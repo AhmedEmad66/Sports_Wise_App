@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
+import 'package:sport_wise_app/Routes/teams_and_players_screen.dart';
 import '../Res/app_colors.dart';
 import '../Res/app_images.dart';
 
@@ -38,14 +39,23 @@ class LeaguesScreen extends StatelessWidget {
                   ),
                   children: [
                     for (int i = 0; i < 20; i++)
-                      Container(
-                        margin: const EdgeInsets.symmetric(
-                            horizontal: 10, vertical: 10),
-                        width: double.infinity,
-                        height: 80,
-                        decoration: BoxDecoration(
-                          color: AppColors.kMyDarkGrey,
-                          borderRadius: BorderRadius.circular(15),
+                      InkWell(
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      const TeamsAndPlayersScreen()));
+                        },
+                        child: Container(
+                          margin: const EdgeInsets.symmetric(
+                              horizontal: 10, vertical: 10),
+                          width: double.infinity,
+                          height: 80,
+                          decoration: BoxDecoration(
+                            color: AppColors.kMyDarkGrey,
+                            borderRadius: BorderRadius.circular(15),
+                          ),
                         ),
                       ),
                   ],

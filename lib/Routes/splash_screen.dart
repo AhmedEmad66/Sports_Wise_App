@@ -22,7 +22,7 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     Future.delayed(const Duration(seconds: 2), () {
       Navigator.pushReplacement(context,
-          MaterialPageRoute(builder: (context) => const OnboardingScreen()));
+          MaterialPageRoute(builder: (context) =>  const OnboardingScreen()));
     });
     super.initState();
   }
@@ -34,8 +34,8 @@ class _SplashScreenState extends State<SplashScreen> {
       resizeToAvoidBottomInset: false,
       backgroundColor: AppColors.kBackGroundColor,
       body: Container(
-        width: MediaQuery.of(context).size.width,
-        height: MediaQuery.of(context).size.height,
+        height: double.infinity,
+        width: double.infinity,
         decoration: const BoxDecoration(
           image: DecorationImage(
             fit: BoxFit.fill,

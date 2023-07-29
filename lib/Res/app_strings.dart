@@ -11,3 +11,5 @@ class AppStrings {
   static const String kOnboardingDescription3 =
       "we've got you covered with comprehensive coverage and in-depth analysis";
 }
+
+

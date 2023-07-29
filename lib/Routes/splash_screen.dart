@@ -1,16 +1,18 @@
 import 'dart:io';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart'; // Import shared_preferences
 import 'package:sport_wise_app/Routes/onboarding_screen.dart';
+import 'package:sport_wise_app/Routes/home_screen.dart'; // Replace 'home_screen.dart' with your desired destination screen after the onboarding
 
 import '../Res/app_colors.dart';
 import '../Res/app_images.dart';
 import '../Res/app_strings.dart';
 
 class SplashScreen extends StatefulWidget {
-  const SplashScreen({super.key});
-// Named Route
+  const SplashScreen({Key? key});
+
+  // Named Route
   static String id = 'SplashScreen';
 
   @override
@@ -20,11 +22,32 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
-    Future.delayed(const Duration(seconds: 2), () {
-      Navigator.pushReplacement(context,
-          MaterialPageRoute(builder: (context) =>  const OnboardingScreen()));
-    });
+    _checkOnboardingStatus(); // Check if the onboarding should be shown or not
     super.initState();
+  }
+
+  // Check if this is the first time the app is running
+  void _checkOnboardingStatus() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    bool showOnboarding = prefs.getBool('show_onboarding') ?? true;
+
+    if (showOnboarding) {
+      // If the onboarding screen should be shown, wait for 2 seconds and navigate to OnboardingScreen
+      Future.delayed(const Duration(seconds: 2), () {
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) => const OnboardingScreen()),
+        );
+      });
+      // Set 'show_onboarding' to false to prevent showing the onboarding again
+      await prefs.setBool('show_onboarding', false);
+    } else {
+      // If the onboarding screen should not be shown, wait for 2 seconds and navigate to the next screen after the onboarding
+      Future.delayed(const Duration(seconds: 2), () {
+        Navigator.pushReplacement(
+            context, MaterialPageRoute(builder: (context) => const HomeScreen()));
+      });
+    }
   }
 
   @override
@@ -54,8 +77,7 @@ class _SplashScreenState extends State<SplashScreen> {
               decoration: const BoxDecoration(
                 boxShadow: [
                   BoxShadow(
-                    color:
-                        Color.fromRGBO(123, 253, 223, 0.1), //color of shadow
+                    color: Color.fromRGBO(123, 253, 223, 0.1), //color of shadow
                     spreadRadius: 45, //spread radius
                     blurRadius: 40, // blur radius
                     offset: Offset(0, 0), // changes position of shadow

@@ -14,4 +14,5 @@ class AppImages {
   static const String kBasketball = "${kHomeCategoriesURL}basketball.png";
   static const String kVollyball = "${kHomeCategoriesURL}vollyball.png";
   static const String kTennis = "${kHomeCategoriesURL}tennis.png";
+  static const String kImageNotFound = "https://hesolutions.com.pk/wp-content/uploads/2019/01/picture-not-available.jpg";
 }

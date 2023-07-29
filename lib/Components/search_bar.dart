@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sport_wise_app/Res/app_colors.dart';
 
-
 class SearchBar extends StatelessWidget {
   const SearchBar({
     super.key,
@@ -37,9 +36,9 @@ class SearchBar extends StatelessWidget {
           hintText: hintText,
           hintStyle: const TextStyle(
             color: Color.fromRGBO(116, 116, 116, 1),
-            fontSize: 13,
+            fontSize: 16,
             fontFamily: "Ubuntu",
-            fontWeight: FontWeight.w400,
+            fontWeight: FontWeight.w500,
           ),
           prefixIcon: const Icon(
             Icons.search_rounded,

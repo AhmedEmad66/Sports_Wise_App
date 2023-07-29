@@ -1,14 +1,17 @@
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
-
+import 'package:sport_wise_app/Data/Cubits/Team_Players_Cubit/team_players_cubit.dart';
+import 'package:sport_wise_app/Data/Models/team_players_model/result.dart';
+import '../Components/dialog_needs.dart';
 import '../Components/search_bar.dart';
 import '../Res/app_colors.dart';
 import '../Res/app_images.dart';
 
 class PlayerScreen extends StatelessWidget {
-  const PlayerScreen({super.key});
-
+  const PlayerScreen({super.key, required this.teamName});
+  final String teamName;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,9 +32,9 @@ class PlayerScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              const Text(
-                "Team's Players",
-                style: TextStyle(
+              Text(
+                teamName,
+                style: const TextStyle(
                   fontSize: 30,
                   fontFamily: "Ubuntu",
                   fontWeight: FontWeight.w600,
@@ -56,199 +59,129 @@ class PlayerScreen extends StatelessWidget {
                 height: 5,
               ),
               Expanded(
-                child: SingleChildScrollView(
-                  physics: const BouncingScrollPhysics(),
-                  child: AnimationLimiter(
-                    child: Column(
-                      children: AnimationConfiguration.toStaggeredList(
-                        duration: const Duration(milliseconds: 500),
-                        childAnimationBuilder: (widget) => SlideAnimation(
-                          verticalOffset: 50.0,
-                          child: FadeInAnimation(
-                            child: widget,
-                          ),
-                        ),
-                        children: [
-                          for (int i = 0; i < 20; i++)
-                            InkWell(
-                              onTap: () {
-                                AwesomeDialog(
-                                  context: context,
-                                  dialogBackgroundColor:
-                                      AppColors.kBackGroundColor,
-                                  customHeader: const CircleAvatar(
-                                    radius: 55,
-                                    backgroundImage: AssetImage(
-                                        "assets/images/onboarding/m.png"),
-                                  ),
-                                  animType: AnimType.rightSlide,
-                                  body: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: const [
-                                      Text(
-                                        "Name: ",
-                                        style: TextStyle(
-                                          color: AppColors.kMyWhite,
-                                          fontSize: 25,
-                                          fontFamily: "Ubuntu",
-                                        ),
-                                      ),
-                                      SizedBox(
-                                        height: 10,
-                                      ),
-                                      Text(
-                                        "Number: ",
-                                        style: TextStyle(
-                                          color: AppColors.kMyWhite,
-                                          fontSize: 25,
-                                          fontFamily: "Ubuntu",
-                                        ),
-                                      ),
-                                      SizedBox(
-                                        height: 10,
-                                      ),
-                                      Text(
-                                        "Country: ",
-                                        style: TextStyle(
-                                          color: AppColors.kMyWhite,
-                                          fontSize: 25,
-                                          fontFamily: "Ubuntu",
-                                        ),
-                                      ),
-                                      SizedBox(
-                                        height: 10,
-                                      ),
-                                      Text(
-                                        "Position: ",
-                                        style: TextStyle(
-                                          color: AppColors.kMyWhite,
-                                          fontSize: 25,
-                                          fontFamily: "Ubuntu",
-                                        ),
-                                      ),
-                                      SizedBox(
-                                        height: 10,
-                                      ),
-                                      Text(
-                                        "Age: ",
-                                        style: TextStyle(
-                                          color: AppColors.kMyWhite,
-                                          fontSize: 25,
-                                          fontFamily: "Ubuntu",
-                                        ),
-                                      ),
-                                      SizedBox(
-                                        height: 10,
-                                      ),
-                                      Text(
-                                        "Yellow Cards: ",
-                                        style: TextStyle(
-                                          color: AppColors.kMyWhite,
-                                          fontSize: 25,
-                                          fontFamily: "Ubuntu",
-                                        ),
-                                      ),
-                                      SizedBox(
-                                        height: 10,
-                                      ),
-                                      Text(
-                                        "Red Cards: ",
-                                        style: TextStyle(
-                                          color: AppColors.kMyWhite,
-                                          fontSize: 25,
-                                          fontFamily: "Ubuntu",
-                                        ),
-                                      ),
-                                      SizedBox(
-                                        height: 10,
-                                      ),
-                                      Text(
-                                        "Goals: ",
-                                        style: TextStyle(
-                                          color: AppColors.kMyWhite,
-                                          fontSize: 25,
-                                          fontFamily: "Ubuntu",
-                                        ),
-                                      ),
-                                      SizedBox(
-                                        height: 10,
-                                      ),
-                                      Text(
-                                        "Assists: ",
-                                        style: TextStyle(
-                                          color: AppColors.kMyWhite,
-                                          fontSize: 25,
-                                          fontFamily: "Ubuntu",
-                                        ),
-                                      ),
-                                      SizedBox(
-                                        height: 10,
-                                      ),
-                                    ],
-                                  ),
-                                  btnOkOnPress: () {},
-                                  btnOkColor: AppColors.kMyDarkGrey,
-                                ).show();
-                              },
-                              child: Container(
-                                margin:
-                                    const EdgeInsets.symmetric(vertical: 10),
-                                padding:
-                                    const EdgeInsets.symmetric(horizontal: 10),
-                                width: double.infinity,
-                                height: 80,
-                                decoration: BoxDecoration(
-                                  color: AppColors.kMyDarkGrey,
-                                  borderRadius: BorderRadius.circular(15),
-                                ),
-                                child: Row(
-                                  children: [
-                                    const CircleAvatar(
-                                      backgroundColor: AppColors.kMyWhite,
-                                      backgroundImage:
-                                          AssetImage(AppImages.kOnboard2),
-                                      radius: 25,
-                                    ),
-                                    const SizedBox(
-                                      width: 15,
-                                    ),
-                                    Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: const [
-                                        Text(
-                                          "Player Name",
-                                          style: TextStyle(
-                                            color: AppColors.kMyWhite,
-                                            fontSize: 15,
-                                            fontFamily: "Ubuntu",
-                                            fontWeight: FontWeight.w700,
-                                          ),
-                                        ),
-                                        SizedBox(
-                                          height: 5,
-                                        ),
-                                        Text(
-                                          "Player Position",
-                                          style: TextStyle(
-                                            fontSize: 10,
-                                            fontWeight: FontWeight.w500,
-                                            color: AppColors.kMyLightGrey,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ],
+                child: BlocBuilder<TeamPlayersCubit, TeamPlayersState>(
+                  builder: (context, state) {
+                    if (state is TeamPlayersLoading) {
+                      return const Center(
+                        child: CircularProgressIndicator(),
+                      );
+                    } else if (state is TeamPlayersSuccess) {
+                      var ourPlayers = state.teamPlayers.result!;
+                      return SingleChildScrollView(
+                        physics: const BouncingScrollPhysics(),
+                        child: AnimationLimiter(
+                          child: Column(
+                            children: AnimationConfiguration.toStaggeredList(
+                              duration: const Duration(milliseconds: 500),
+                              childAnimationBuilder: (widget) => SlideAnimation(
+                                verticalOffset: 50.0,
+                                child: FadeInAnimation(
+                                  child: widget,
                                 ),
                               ),
+                              children: [
+                                for (int index = 0;
+                                    index < ourPlayers.length;
+                                    index++)
+                                  InkWell(
+                                    onTap: () {
+                                      AwesomeDialog(
+                                        context: context,
+                                        dialogBackgroundColor:
+                                            AppColors.kBackGroundColor,
+                                        customHeader: CircleAvatar(
+                                          backgroundColor:
+                                              AppColors.kMyDarkGrey,
+                                          radius: 55,
+                                          backgroundImage: NetworkImage(
+                                            ourPlayers[index].playerImage ??
+                                                AppImages.kImageNotFound,
+                                          ),
+                                        ),
+                                        animType: AnimType.rightSlide,
+                                        body: PlayerDialogInfo(
+                                            ourPlayers: ourPlayers,
+                                            index: index),
+                                        btnOkOnPress: () {},
+                                        btnOkColor: AppColors.kMyDarkGrey,
+                                      ).show();
+                                    },
+                                    child: Container(
+                                      margin: const EdgeInsets.symmetric(
+                                          vertical: 10),
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 10),
+                                      width: double.infinity,
+                                      height: 80,
+                                      decoration: BoxDecoration(
+                                        color: AppColors.kMyDarkGrey,
+                                        borderRadius: BorderRadius.circular(15),
+                                      ),
+                                      child: Row(
+                                        children: [
+                                          CircleAvatar(
+                                            backgroundColor: AppColors.kMyWhite,
+                                            backgroundImage: NetworkImage(
+                                              ourPlayers[index].playerImage ??
+                                                  AppImages.kImageNotFound,
+                                            ),
+                                            radius: 25,
+                                          ),
+                                          const SizedBox(
+                                            width: 15,
+                                          ),
+                                          Column(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              Text(
+                                                ourPlayers[index].playerName ??
+                                                    "",
+                                                style: const TextStyle(
+                                                  color: AppColors.kMyWhite,
+                                                  fontSize: 15,
+                                                  fontFamily: "Ubuntu",
+                                                  fontWeight: FontWeight.w700,
+                                                ),
+                                              ),
+                                              const SizedBox(
+                                                height: 5,
+                                              ),
+                                              Text(
+                                                ourPlayers[index].playerType ??
+                                                    "",
+                                                style: const TextStyle(
+                                                  fontSize: 10,
+                                                  fontWeight: FontWeight.w500,
+                                                  color: AppColors.kMyLightGrey,
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                              ],
                             ),
-                        ],
-                      ),
-                    ),
-                  ),
+                          ),
+                        ),
+                      );
+                    } else {
+                      return const Center(
+                        child: Text(
+                          "Requst is Faild",
+                          style: TextStyle(
+                            color: AppColors.kMyWhite,
+                            fontFamily: "Ubuntu",
+                            fontSize: 25,
+                          ),
+                        ),
+                      );
+                    }
+                  },
                 ),
               ),
             ],
@@ -258,3 +191,5 @@ class PlayerScreen extends StatelessWidget {
     );
   }
 }
+
+

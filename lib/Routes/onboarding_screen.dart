@@ -117,7 +117,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                           width: MediaQuery.of(context).size.width / 2,
                           height: 50,
                           onPressed: () {
-                            Navigator.push(
+                            Navigator.pushReplacement(
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) => const HomeScreen()));

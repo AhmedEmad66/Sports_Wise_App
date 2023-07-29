@@ -8,6 +8,7 @@ import 'package:sport_wise_app/Data/Repositories/league_teams_repo.dart';
 import 'package:sport_wise_app/Routes/teams_and_top_scorers.dart';
 import '../Res/app_colors.dart';
 import '../Res/app_images.dart';
+import '../generated/l10n.dart';
 
 class LeaguesScreen extends StatelessWidget {
   const LeaguesScreen({
@@ -36,14 +37,32 @@ class LeaguesScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text(
-                "All Leagues for the choosen country",
-                style: TextStyle(
-                  fontSize: 30,
-                  fontFamily: "Ubuntu",
-                  fontWeight: FontWeight.w600,
-                  color: AppColors.kPrimaryColor,
-                ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  IconButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    icon: const Icon(Icons.arrow_back_ios_new),
+                    color: AppColors.kMyLightGrey,
+                  ),
+                  const Spacer(
+                    flex: 1,
+                  ),
+                   Text(
+                    S.of(context).leaguesScreenTitle,
+                    style: TextStyle(
+                      fontSize: 30,
+                      fontFamily: "Ubuntu",
+                      fontWeight: FontWeight.w600,
+                      color: AppColors.kPrimaryColor,
+                    ),
+                  ),
+                  const Spacer(
+                    flex: 2,
+                  ),
+                ],
               ),
               const SizedBox(
                 height: 20,
@@ -77,7 +96,7 @@ class LeaguesScreen extends StatelessWidget {
                                           context,
                                           MaterialPageRoute(
                                               builder: (context) =>
-                                                  const TeamsAndTopScorers()));
+                                                  TeamsAndTopScorers()));
                                       leagueId = ourLeagues[i].leagueKey;
                                       context
                                           .read<LeagueTeamsCubit>()
@@ -117,7 +136,7 @@ class LeaguesScreen extends StatelessWidget {
                                                 CrossAxisAlignment.start,
                                             children: [
                                               SizedBox(
-                                                width: 170,
+                                                width: 160,
                                                 child: Text(
                                                   ourLeagues[i].leagueName ??
                                                       "",

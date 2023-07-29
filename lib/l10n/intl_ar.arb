@@ -1,0 +1,39 @@
+{
+    
+    "onboardingTitle1" : "اعرف الخبر من اي مكان وفي اي وقت",
+    "onboardingTitle2" : "نتائج حقيقيه وفوريه",
+    "onboardingTitle3" : "لنبدأ!",
+    "onboardingNumber1" : "١ من ٢",
+    "onboardingNumber2" : "٢ من ٣",
+    "onboardingNumber3" : "٣ من ٣",
+    "onboardingDescription1" : "معنا! ياتي الملعب اليك",
+    "onboardingDescription2" : "استمتع بكل المباريات بدون تفويت اي لحظه",
+    "onboardingDescription3" : "نزودك بتغطيه جيده مع تحليل عميق للخبر",
+    "skipBtn" : "تحطي",
+
+    "homeScreenTitle": " :يوجد العديد من الرياضات الممتعه لتختارها",
+    "footballCategory" : "كرة القدم",
+    "basketballCategory" : "كرة السلة",
+    "vollyballCategory" : "كرة الطائرة",
+    "tennisCategory" : "تنس",
+
+    "comingSoonMessage" : "^_^قريبا",
+    "messageOkBtn" : "تم",
+
+    "sideMenuTitle" : "القائمه الجانبيه",
+    "themeModeLight" : "الوضع الفاتح",
+    "themeModeDark" : "الوضع الليلي",
+    "languages" : "اللغات",
+    "support" : "الدعم",
+    "developerInfo" : "معلومات المطور",
+
+    "countryScreenTitle" : "الدول",
+    
+    "leaguesScreenTitle" : "البطولات",
+    
+    "teamsTitle" : "الفرق",
+    "topScorersTitle" : "الهدافين",
+    
+    "searchBarHintText" : "ابحث..."
+    
+}

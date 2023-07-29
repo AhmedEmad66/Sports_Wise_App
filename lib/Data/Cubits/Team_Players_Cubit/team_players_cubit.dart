@@ -19,5 +19,15 @@ class TeamPlayersCubit extends Cubit<TeamPlayersState> {
       }
     });
   }
+   searchPlayer() {
+    emit(TeamPlayersLoading());
+    TeamPlayersRepo().searchForPlayer().then((value) {
+      if (value != null) {
+        emit(TeamPlayersSuccess(teamPlayers: value));
+      } else {
+        emit(TeamPlayersFaild());
+      }
+    });
+  }
 
 }

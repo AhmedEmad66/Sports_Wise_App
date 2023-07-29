@@ -18,4 +18,14 @@ class LeagueTeamsCubit extends Cubit<LeagueTeamsState> {
       }
     });
   }
+  searchTeam() {
+    emit(LeagueTeamsLoading());
+    LeagueTeamsRepo().searchForTeam().then((value) {
+      if (value != null) {
+        emit(LeagueTeamsSuccess(leagueTeams: value));
+      } else {
+        emit(LeagueTeamsFaild());
+      }
+    });
+  }
 }

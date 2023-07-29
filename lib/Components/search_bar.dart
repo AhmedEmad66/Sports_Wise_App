@@ -1,48 +1,55 @@
 import 'package:flutter/material.dart';
 import 'package:sport_wise_app/Res/app_colors.dart';
 
+typedef OnTextChangedCallback = void Function(String);
+
 class SearchBar extends StatelessWidget {
   const SearchBar({
     super.key,
     required this.hintText,
     required this.width,
+    required this.controller,
+    required this.onPressed,
   });
   final String hintText;
   final double width;
+  final TextEditingController controller;
+  final VoidCallback onPressed;
 
   @override
   Widget build(BuildContext context) {
     return Container(
       width: width,
-      height: 55,
+      // height: 55,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(14),
-        border: Border.all(
-          color: const Color(0xff3A3A3A),
-        ),
-        color: const Color(0xff2D2D2D),
+        color: AppColors.kMyDarkGrey,
       ),
       child: TextFormField(
+        controller: controller,
         cursorColor: AppColors.kPrimaryColor,
         style: const TextStyle(
-          color: Color(0xffFFFFFF),
+          color: AppColors.kMyWhite,
           fontSize: 16,
           fontFamily: "Ubuntu",
           fontWeight: FontWeight.w400,
         ),
         keyboardType: TextInputType.text,
-        textInputAction: TextInputAction.done,
+        textInputAction: TextInputAction.search,
         decoration: InputDecoration(
           hintText: hintText,
           hintStyle: const TextStyle(
-            color: Color.fromRGBO(116, 116, 116, 1),
+            color: AppColors.kMyLightGrey,
             fontSize: 16,
             fontFamily: "Ubuntu",
             fontWeight: FontWeight.w500,
           ),
-          prefixIcon: const Icon(
-            Icons.search_rounded,
-            color: Color(0xff707070),
+          suffix: InkWell(
+            onTap: onPressed,
+            child: const Icon(
+              Icons.search_rounded,
+              color: AppColors.kPrimaryColor,
+            ),
           ),
           border: InputBorder.none,
           enabledBorder: InputBorder.none,
@@ -50,8 +57,10 @@ class SearchBar extends StatelessWidget {
             borderSide: const BorderSide(color: AppColors.kPrimaryColor),
             borderRadius: BorderRadius.circular(14),
           ),
-          contentPadding: const EdgeInsets.symmetric(
-            vertical: 20,
+          contentPadding: const EdgeInsets.only(
+            bottom: 30,
+            left: 20,
+            right: 20,
           ),
         ),
       ),

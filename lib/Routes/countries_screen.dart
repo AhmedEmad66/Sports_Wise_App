@@ -7,6 +7,7 @@ import 'package:sport_wise_app/Data/Repositories/each_country_leagues_repo.dart'
 import 'package:sport_wise_app/Routes/leagues_screen.dart';
 import '../Res/app_colors.dart';
 import '../Res/app_images.dart';
+import '../generated/l10n.dart';
 
 class CountriesScreen extends StatefulWidget {
   const CountriesScreen({super.key});
@@ -44,14 +45,32 @@ class _CountriesScreenState extends State<CountriesScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text(
-                "All Countries that practice this sport",
-                style: TextStyle(
-                  fontSize: 30,
-                  fontFamily: "Ubuntu",
-                  fontWeight: FontWeight.w600,
-                  color: AppColors.kPrimaryColor,
-                ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  IconButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    icon: const Icon(Icons.arrow_back_ios_new),
+                    color: AppColors.kMyLightGrey,
+                  ),
+                  const Spacer(
+                    flex: 1,
+                  ),
+                   Text(
+                    S.of(context).countryScreenTitle,
+                    style: TextStyle(
+                      fontSize: 30,
+                      fontFamily: "Ubuntu",
+                      fontWeight: FontWeight.w600,
+                      color: AppColors.kPrimaryColor,
+                    ),
+                  ),
+                  const Spacer(
+                    flex: 2,
+                  ),
+                ],
               ),
               const SizedBox(
                 height: 20,
@@ -90,13 +109,9 @@ class _CountriesScreenState extends State<CountriesScreen> {
                                   MaterialPageRoute(
                                       builder: (context) =>
                                           const LeaguesScreen()));
-                             
-                                countryId = ourCountries[index].countryKey;
-                                context
-                                    .read<CountryLeaguesCubit>()
-                                    .getLeagues();
-                               
-                              
+
+                              countryId = ourCountries[index].countryKey;
+                              context.read<CountryLeaguesCubit>().getLeagues();
                             },
                             child: Container(
                               padding: const EdgeInsets.all(8),

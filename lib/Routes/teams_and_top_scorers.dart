@@ -4,17 +4,21 @@ import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:sport_wise_app/Data/Cubits/League_Teams_Cubit/league_teams_cubit.dart';
 import 'package:sport_wise_app/Data/Cubits/Team_Players_Cubit/team_players_cubit.dart';
 import 'package:sport_wise_app/Data/Cubits/Top_Scorers_Cubit/top_scorers_cubit.dart';
+import 'package:sport_wise_app/Data/Repositories/league_teams_repo.dart';
 import 'package:sport_wise_app/Data/Repositories/team_players_repo.dart';
 import 'package:sport_wise_app/Routes/players_screen.dart';
 
 import '../Components/search_bar.dart';
 import '../Res/app_colors.dart';
 import '../Res/app_images.dart';
+import '../generated/l10n.dart';
 
 class TeamsAndTopScorers extends StatelessWidget {
-  const TeamsAndTopScorers({super.key});
+  TeamsAndTopScorers({super.key});
   // Named Route
   static const String id = "TeamsAndPlayersScreen";
+
+  TextEditingController _searchTeamController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -36,15 +40,19 @@ class TeamsAndTopScorers extends StatelessWidget {
           child: SafeArea(
             child: Column(
               children: [
-                // Row(
-                //   children: const [
-                //     BackArrow(),
-                //   ],
-                // ),
-                const SizedBox(
-                  height: 20,
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    IconButton(
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                      icon: const Icon(Icons.arrow_back_ios_new),
+                      color: AppColors.kMyLightGrey,
+                    ),
+                  ],
                 ),
-                const TabBar(
+                 TabBar(
                     dividerColor: Colors.transparent,
                     physics: BouncingScrollPhysics(),
                     labelPadding: EdgeInsets.only(
@@ -65,13 +73,12 @@ class TeamsAndTopScorers extends StatelessWidget {
                     ),
                     indicatorColor: Colors.transparent,
                     tabs: [
-                      Tab(text: "Teams"),
-                      Tab(text: "TopScorers"),
+                      Tab(text: S.of(context).teamsTitle),
+                      Tab(text: S.of(context).topScorersTitle),
                     ]),
                 const SizedBox(
                   height: 20,
                 ),
-
                 Expanded(
                   child: TabBarView(
                     physics: const NeverScrollableScrollPhysics(),
@@ -86,11 +93,23 @@ class TeamsAndTopScorers extends StatelessWidget {
                             var ourTeams = state.leagueTeams.result!;
                             return Column(
                               children: [
-                                const Padding(
-                                  padding: EdgeInsets.symmetric(horizontal: 10),
-                                  child: SearchBar(
-                                    hintText: "Search here..",
-                                    width: double.infinity,
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 10),
+                                  child: Form(
+                                    child: SearchBar(
+                                      hintText: S.of(context).searchBarHintText,
+                                      width: double.infinity,
+                                      controller: _searchTeamController,
+                                      onPressed: () {
+                                        apiTeamName =
+                                            _searchTeamController.text;
+                                        context
+                                            .read<LeagueTeamsCubit>()
+                                            .searchTeam();
+                                        _searchTeamController.text = "";
+                                      },
+                                    ),
                                   ),
                                 ),
                                 const SizedBox(
@@ -250,31 +269,20 @@ class TeamsAndTopScorers extends StatelessWidget {
                                             margin: const EdgeInsets.symmetric(
                                                 horizontal: 10, vertical: 10),
                                             padding: const EdgeInsets.symmetric(
-                                                horizontal: 10),
+                                                horizontal: 20, vertical: 10),
                                             width: double.infinity,
-                                            height: 80,
                                             decoration: BoxDecoration(
                                               color: AppColors.kMyDarkGrey,
                                               borderRadius:
                                                   BorderRadius.circular(15),
                                             ),
-                                            child: Row(
+                                            child: Column(
                                               children: [
-                                                const CircleAvatar(
-                                                  backgroundColor:
-                                                      AppColors.kMyWhite,
-                                                  backgroundImage: AssetImage(
-                                                      AppImages.kOnboard2),
-                                                  radius: 25,
-                                                ),
-                                                const SizedBox(
-                                                  width: 15,
-                                                ),
-                                                Column(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment.center,
+                                                Row(
                                                   crossAxisAlignment:
                                                       CrossAxisAlignment.start,
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.center,
                                                   children: [
                                                     Text(
                                                       ourTopScorers[i]
@@ -283,50 +291,144 @@ class TeamsAndTopScorers extends StatelessWidget {
                                                       style: const TextStyle(
                                                         color:
                                                             AppColors.kMyWhite,
-                                                        fontSize: 15,
+                                                        fontSize: 20,
                                                         fontFamily: "Ubuntu",
                                                         fontWeight:
                                                             FontWeight.w700,
                                                       ),
                                                     ),
-                                                    const SizedBox(
-                                                      height: 5,
+                                                  ],
+                                                ),
+                                                const SizedBox(
+                                                  height: 10,
+                                                ),
+                                                Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceAround,
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
+                                                  children: [
+                                                    // const CircleAvatar(
+                                                    //   backgroundColor:
+                                                    //       AppColors.kMyWhite,
+                                                    //   backgroundImage: AssetImage(
+                                                    //       AppImages.kOnboard2),
+                                                    //   radius: 25,
+                                                    // ),
+                                                    Column(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .start,
+                                                      crossAxisAlignment:
+                                                          CrossAxisAlignment
+                                                              .center,
+                                                      children: [
+                                                        const Text(
+                                                          "Team",
+                                                          style: TextStyle(
+                                                            fontSize: 15,
+                                                            fontWeight:
+                                                                FontWeight.w600,
+                                                            color: AppColors
+                                                                .kMyLightGrey,
+                                                          ),
+                                                        ),
+                                                        const SizedBox(
+                                                          height: 5,
+                                                        ),
+                                                        SizedBox(
+                                                          width: 120,
+                                                          child: Text(
+                                                            ourTopScorers[i]
+                                                                    .teamName ??
+                                                                "",
+                                                            textAlign: TextAlign
+                                                                .center,
+                                                            style:
+                                                                const TextStyle(
+                                                              fontSize: 15,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w500,
+                                                              color: AppColors
+                                                                  .kMyWhite,
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      ],
                                                     ),
-                                                    Text(
-                                                      ourTopScorers[i]
-                                                          .playerPlace
-                                                          .toString(),
-                                                      style: const TextStyle(
-                                                        fontSize: 10,
-                                                        fontWeight:
-                                                            FontWeight.w500,
-                                                        color: AppColors
-                                                            .kMyLightGrey,
-                                                      ),
+                                                    Column(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .spaceEvenly,
+                                                      crossAxisAlignment:
+                                                          CrossAxisAlignment
+                                                              .center,
+                                                      children: [
+                                                        const Text(
+                                                          "Number",
+                                                          style: TextStyle(
+                                                            fontSize: 15,
+                                                            fontWeight:
+                                                                FontWeight.w600,
+                                                            color: AppColors
+                                                                .kMyLightGrey,
+                                                          ),
+                                                        ),
+                                                        const SizedBox(
+                                                          height: 5,
+                                                        ),
+                                                        Text(
+                                                          ourTopScorers[i]
+                                                              .playerPlace
+                                                              .toString(),
+                                                          style:
+                                                              const TextStyle(
+                                                            fontSize: 15,
+                                                            fontWeight:
+                                                                FontWeight.w500,
+                                                            color: AppColors
+                                                                .kMyWhite,
+                                                          ),
+                                                        ),
+                                                      ],
                                                     ),
-                                                    Text(
-                                                      ourTopScorers[i]
-                                                              .teamName ??
-                                                          "",
-                                                      style: const TextStyle(
-                                                        fontSize: 10,
-                                                        fontWeight:
-                                                            FontWeight.w500,
-                                                        color: AppColors
-                                                            .kMyLightGrey,
-                                                      ),
-                                                    ),
-                                                    Text(
-                                                      ourTopScorers[i]
-                                                          .goals
-                                                          .toString(),
-                                                      style: const TextStyle(
-                                                        fontSize: 10,
-                                                        fontWeight:
-                                                            FontWeight.w500,
-                                                        color: AppColors
-                                                            .kMyLightGrey,
-                                                      ),
+                                                    Column(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .spaceEvenly,
+                                                      crossAxisAlignment:
+                                                          CrossAxisAlignment
+                                                              .center,
+                                                      children: [
+                                                        const Text(
+                                                          "Goals",
+                                                          style: TextStyle(
+                                                            fontSize: 15,
+                                                            fontWeight:
+                                                                FontWeight.w600,
+                                                            color: AppColors
+                                                                .kMyLightGrey,
+                                                          ),
+                                                        ),
+                                                        const SizedBox(
+                                                          height: 5,
+                                                        ),
+                                                        Text(
+                                                          ourTopScorers[i]
+                                                              .goals
+                                                              .toString(),
+                                                          style:
+                                                              const TextStyle(
+                                                            fontSize: 15,
+                                                            fontWeight:
+                                                                FontWeight.w500,
+                                                            color: AppColors
+                                                                .kMyWhite,
+                                                          ),
+                                                        ),
+                                                      ],
                                                     ),
                                                   ],
                                                 ),

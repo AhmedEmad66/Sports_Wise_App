@@ -1,0 +1,40 @@
+{
+    
+    "onboardingTitle1" : "Catch the Action Anywhere, Anytime",
+    "onboardingTitle2" : "Realtime Score",
+    "onboardingTitle3" : "LET'S GO!",
+    "onboardingNumber1" : "1 of 3",
+    "onboardingNumber2" : "2 of 3",
+    "onboardingNumber3" : "3 of 3",
+    "onboardingDescription1" : "With our app, the stadium comes to you! Catch live games",
+    "onboardingDescription2" : "Enjoy score match score updates in realtime without missing a moment",
+    "onboardingDescription3" : "we've got you covered with comprehensive coverage and in-depth analysis",
+    "skipBtn" : "Skip",
+
+    "homeScreenTitle": "There are many interisting Sports to choose XD",
+    "footballCategory" : "Football",
+    "basketballCategory" : "Bascketball",
+    "vollyballCategory" : "Vollyball",
+    "tennisCategory" : "Tennis",
+    
+    "comingSoonMessage" : "Coming Soon^_^",
+    "messageOkBtn" : "Ok",
+    
+    "sideMenuTitle" : "Side Menu",
+    "themeModeLight" : "Light Mode",
+    "themeModeDark" : "Dark Mode",
+    "languages" : "Languages",
+    "support" : "Support",
+    "developerInfo" : "Developer Info",
+
+    "countryScreenTitle" : "All Countries",
+    
+    "leaguesScreenTitle" : "All Tournaments",
+    
+    "teamsTitle" : "Teams",
+    "topScorersTitle" : "TopScorers",
+    
+    "searchBarHintText" : "Search here"
+    
+   
+}

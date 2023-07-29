@@ -50,58 +50,76 @@ class PlayerDialogInfo extends StatelessWidget {
     return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
       ourPlayers[index].playerName == ""
           ? const SizedBox()
-          : CustomText(
-              text: "Name: ",
-              answer: ourPlayers[index].playerName ?? "",
-            ),
+          : ourPlayers[index].playerName == null
+              ? const SizedBox()
+              : CustomText(
+                  text: "Name: ",
+                  answer: ourPlayers[index].playerName ?? "",
+                ),
       ourPlayers[index].playerType == ""
           ? const SizedBox()
-          : CustomText(
-              text: "Position: ",
-              answer: ourPlayers[index].playerType ?? '',
-            ),
+          : ourPlayers[index].playerType == null
+              ? const SizedBox()
+              : CustomText(
+                  text: "Position: ",
+                  answer: ourPlayers[index].playerType ?? '',
+                ),
       ourPlayers[index].playerNumber == ""
           ? const SizedBox()
-          : CustomText(
-              text: "Number: ",
-              answer: ourPlayers[index].playerNumber ?? "",
-            ),
+          : ourPlayers[index].playerNumber == null
+              ? const SizedBox()
+              : CustomText(
+                  text: "Number: ",
+                  answer: ourPlayers[index].playerNumber ?? "",
+                ),
       ourPlayers[index].playerAge == ""
           ? const SizedBox()
-          : CustomText(
-              text: "Age: ",
-              answer: ourPlayers[index].playerAge ?? '',
-            ),
-      ourPlayers[index].playerCountry == null
+          : ourPlayers[index].playerAge == null
+              ? const SizedBox()
+              : CustomText(
+                  text: "Age: ",
+                  answer: ourPlayers[index].playerAge ?? '',
+                ),
+      ourPlayers[index].playerCountry == ""
           ? const SizedBox()
-          : CustomText(
-              text: "Country: ",
-              answer: ourPlayers[index].playerCountry ?? "NotAllowed",
-            ),
+          : ourPlayers[index].playerCountry == null
+              ? const SizedBox()
+              : CustomText(
+                  text: "Country: ",
+                  answer: ourPlayers[index].playerCountry ?? "NotAllowed",
+                ),
       ourPlayers[index].playerYellowCards == ""
           ? const SizedBox()
-          : CustomText(
-              text: "Yellow Cards: ",
-              answer: ourPlayers[index].playerYellowCards ?? '',
-            ),
+          : ourPlayers[index].playerYellowCards == null
+              ? const SizedBox()
+              : CustomText(
+                  text: "Yellow Cards: ",
+                  answer: ourPlayers[index].playerYellowCards ?? '',
+                ),
       ourPlayers[index].playerRedCards == ""
           ? const SizedBox()
-          : CustomText(
-              text: "Red Cards: ",
-              answer: ourPlayers[index].playerRedCards ?? '',
-            ),
+          : ourPlayers[index].playerRedCards == null
+              ? const SizedBox()
+              : CustomText(
+                  text: "Red Cards: ",
+                  answer: ourPlayers[index].playerRedCards ?? '',
+                ),
       ourPlayers[index].playerGoals == ""
           ? const SizedBox()
-          : CustomText(
-              text: "Goals: ",
-              answer: ourPlayers[index].playerGoals ?? '',
-            ),
+          : ourPlayers[index].playerGoals == null
+              ? const SizedBox()
+              : CustomText(
+                  text: "Goals: ",
+                  answer: ourPlayers[index].playerGoals ?? '',
+                ),
       ourPlayers[index].playerAssists == ""
           ? const SizedBox()
-          : CustomText(
-              text: "Assists: ",
-              answer: ourPlayers[index].playerAssists ?? '',
-            ),
+          : ourPlayers[index].playerAssists == null
+              ? const SizedBox()
+              : CustomText(
+                  text: "Assists: ",
+                  answer: ourPlayers[index].playerAssists ?? '',
+                ),
     ]);
   }
 }

@@ -7,6 +7,7 @@ import 'package:sport_wise_app/Routes/countries_screen.dart';
 import 'package:awesome_dialog/awesome_dialog.dart';
 import '../Components/side_menu_btn.dart';
 import '../Data/Models/home_categories_model.dart';
+import '../generated/l10n.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -15,6 +16,7 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    List<HomeCategoriesModel> categories = homeCategoriesItems(context);
     return Scaffold(
       //To Avoid the keyboard size
       resizeToAvoidBottomInset: false,
@@ -38,8 +40,8 @@ class HomeScreen extends StatelessWidget {
               const Spacer(
                 flex: 2,
               ),
-              const Text(
-                "Side Menu",
+              Text(
+                S.of(context).sideMenuTitle,
                 style: TextStyle(
                   fontFamily: "MyFont",
                   fontSize: 35,
@@ -53,8 +55,8 @@ class HomeScreen extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const Text(
-                    "Light Mode",
+                  Text(
+                    S.of(context).themeModeLight,
                     style: TextStyle(
                       fontFamily: "Ubuntu",
                       fontSize: 25,
@@ -79,15 +81,15 @@ class HomeScreen extends StatelessWidget {
                 height: 25,
               ),
               SideMenuBtn(
-                title: "Langauges",
+                title: S.of(context).languages,
                 onTap: () {},
               ),
               SideMenuBtn(
-                title: "Support",
+                title: S.of(context).support,
                 onTap: () {},
               ),
               SideMenuBtn(
-                title: "Developer Info",
+                title: S.of(context).developerInfo,
                 onTap: () {},
               ),
               const Spacer(
@@ -114,17 +116,17 @@ class HomeScreen extends StatelessWidget {
               const Spacer(
                 flex: 1,
               ),
-              const Text(
-                "There are many interisting sports to choose XD",
+              Text(
+                S.of(context).homeScreenTitle,
                 style: TextStyle(
                   fontSize: 30,
-                  color: AppColors.kMyWhite,
-                  fontFamily: "MyFont",
-                  fontWeight: FontWeight.w600,
+                  color: AppColors.kPrimaryColor,
+                  fontFamily: "Ubuntu",
+                  fontWeight: FontWeight.w700,
                 ),
               ),
               const Spacer(
-                flex: 1,
+                flex: 2,
               ),
               SizedBox(
                 height: MediaQuery.of(context).size.height / 2,
@@ -136,7 +138,7 @@ class HomeScreen extends StatelessWidget {
                     crossAxisSpacing: 10.0,
                     mainAxisSpacing: 15.0,
                   ),
-                  itemCount: homeCategoriesItems.length,
+                  itemCount: categories.length,
                   itemBuilder: (context, index) {
                     return InkWell(
                       onTap: () {
@@ -152,14 +154,15 @@ class HomeScreen extends StatelessWidget {
                                     AppColors.kBackGroundColor,
                                 dialogType: DialogType.warning,
                                 animType: AnimType.rightSlide,
-                                title: 'Coming Soon ^_^',
+                                title: S.of(context).comingSoonMessage,
                                 titleTextStyle: const TextStyle(
                                   color: AppColors.kMyWhite,
                                   fontSize: 25,
-                                  fontFamily: "Ubuntu",
+                                  fontFamily: "MyFont",
                                 ),
                                 btnOkOnPress: () {},
                                 btnOkColor: AppColors.kMyDarkGrey,
+                                btnOkText: S.of(context).messageOkBtn,
                               ).show();
                       },
                       child: Container(
@@ -167,7 +170,7 @@ class HomeScreen extends StatelessWidget {
                         decoration: BoxDecoration(
                           image: DecorationImage(
                             image: AssetImage(
-                              homeCategoriesItems[index].categoryImage,
+                              categories[index].categoryImage,
                             ),
                           ),
                           color: AppColors.kMyDarkGrey,
@@ -178,11 +181,11 @@ class HomeScreen extends StatelessWidget {
                         child: Align(
                           alignment: Alignment.bottomCenter,
                           child: Text(
-                            homeCategoriesItems[index].categoryName,
+                            categories[index].categoryName,
                             style: const TextStyle(
-                              fontFamily: "Ubuntu",
+                              fontFamily: "MyFont",
                               color: AppColors.kMyWhite,
-                              fontSize: 20,
+                              fontSize: 25,
                             ),
                           ),
                         ),

@@ -3,15 +3,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:sport_wise_app/Data/Cubits/Team_Players_Cubit/team_players_cubit.dart';
-import 'package:sport_wise_app/Data/Models/team_players_model/result.dart';
+import 'package:sport_wise_app/Data/Repositories/team_players_repo.dart';
 import '../Components/dialog_needs.dart';
 import '../Components/search_bar.dart';
+import '../Data/Cubits/League_Teams_Cubit/league_teams_cubit.dart';
 import '../Res/app_colors.dart';
 import '../Res/app_images.dart';
+import '../generated/l10n.dart';
 
 class PlayerScreen extends StatelessWidget {
-  const PlayerScreen({super.key, required this.teamName});
+  PlayerScreen({super.key, required this.teamName});
   final String teamName;
+
+  TextEditingController _searchPlayerController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,21 +36,49 @@ class PlayerScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Text(
-                teamName,
-                style: const TextStyle(
-                  fontSize: 30,
-                  fontFamily: "Ubuntu",
-                  fontWeight: FontWeight.w600,
-                  color: AppColors.kPrimaryColor,
-                ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  IconButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                      context.read<LeagueTeamsCubit>().getTeams();
+                    },
+                    icon: const Icon(Icons.arrow_back_ios_new),
+                    color: AppColors.kMyLightGrey,
+                  ),
+                  Spacer(
+                    flex: 1,
+                  ),
+                  Text(
+                    teamName,
+                    style: TextStyle(
+                      fontSize: teamName.length < 17 ? 30 : 20,
+                      fontFamily: "Ubuntu",
+                      fontWeight: FontWeight.w600,
+                      color: AppColors.kPrimaryColor,
+                    ),
+                  ),
+                  Spacer(
+                    flex: 2,
+                  ),
+                ],
               ),
               const SizedBox(
                 height: 20,
               ),
-              const SearchBar(
-                hintText: "Search here..",
-                width: double.infinity,
+              Form(
+                child: SearchBar(
+                  hintText: S.of(context).searchBarHintText,
+                  width: double.infinity,
+                  controller: _searchPlayerController,
+                  onPressed: () {
+                    playerName = _searchPlayerController.text;
+                    context.read<TeamPlayersCubit>().searchPlayer();
+                    _searchPlayerController.text = "";
+                  },
+                ),
               ),
               const SizedBox(
                 height: 10,
@@ -110,9 +142,10 @@ class PlayerScreen extends StatelessWidget {
                                       margin: const EdgeInsets.symmetric(
                                           vertical: 10),
                                       padding: const EdgeInsets.symmetric(
-                                          horizontal: 10),
+                                        horizontal: 10,
+                                      ),
                                       width: double.infinity,
-                                      height: 80,
+                                      height: 90,
                                       decoration: BoxDecoration(
                                         color: AppColors.kMyDarkGrey,
                                         borderRadius: BorderRadius.circular(15),
@@ -125,7 +158,7 @@ class PlayerScreen extends StatelessWidget {
                                               ourPlayers[index].playerImage ??
                                                   AppImages.kImageNotFound,
                                             ),
-                                            radius: 25,
+                                            radius: 35,
                                           ),
                                           const SizedBox(
                                             width: 15,
@@ -139,9 +172,14 @@ class PlayerScreen extends StatelessWidget {
                                               Text(
                                                 ourPlayers[index].playerName ??
                                                     "",
-                                                style: const TextStyle(
+                                                style: TextStyle(
                                                   color: AppColors.kMyWhite,
-                                                  fontSize: 15,
+                                                  fontSize: ourPlayers[index]
+                                                              .playerName!
+                                                              .length <
+                                                          23
+                                                      ? 18
+                                                      : 15,
                                                   fontFamily: "Ubuntu",
                                                   fontWeight: FontWeight.w700,
                                                 ),
@@ -153,7 +191,8 @@ class PlayerScreen extends StatelessWidget {
                                                 ourPlayers[index].playerType ??
                                                     "",
                                                 style: const TextStyle(
-                                                  fontSize: 10,
+                                                  fontFamily: "Ubuntu",
+                                                  fontSize: 13,
                                                   fontWeight: FontWeight.w500,
                                                   color: AppColors.kMyLightGrey,
                                                 ),
@@ -191,5 +230,3 @@ class PlayerScreen extends StatelessWidget {
     );
   }
 }
-
-

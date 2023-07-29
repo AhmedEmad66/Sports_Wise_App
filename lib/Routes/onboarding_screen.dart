@@ -31,7 +31,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
     super.initState();
     // Automatically slide to the next page after 3 seconds
     _timer = Timer.periodic(const Duration(seconds: 3), (Timer timer) {
-      if (_pageIndex < onboardingData.length - 1) {
+      if (_pageIndex < 2) {
         _pageIndex++;
       } else {
         _pageIndex = 0;
@@ -53,6 +53,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
 
   @override
   Widget build(BuildContext context) {
+    List<Onboard> onboardItems = onboardingData(context);
     return Scaffold(
       //To Avoid the keyboard size
       resizeToAvoidBottomInset: false,
@@ -69,7 +70,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 // scrolling PageView for content
                 child: PageView.builder(
                   physics: const BouncingScrollPhysics(),
-                  itemCount: onboardingData.length,
+                  itemCount: onboardItems.length,
                   controller: _pageController,
                   onPageChanged: (index) {
                     setState(() {
@@ -78,10 +79,10 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                   },
                   // Content
                   itemBuilder: (context, index) => OnboardContent(
-                    image: onboardingData[index].image,
-                    title: onboardingData[index].title,
-                    number: onboardingData[index].number,
-                    description: onboardingData[index].description,
+                    image: onboardItems[index].image,
+                    title: onboardItems[index].title,
+                    number: onboardItems[index].number,
+                    description: onboardItems[index].description,
                   ),
                 ),
               ),
@@ -92,7 +93,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                   children: [
                     // Indicator
                     ...List.generate(
-                      onboardingData.length,
+                      onboardItems.length,
                       (index) => Padding(
                         padding: const EdgeInsets.only(right: 10),
                         child: InkWell(

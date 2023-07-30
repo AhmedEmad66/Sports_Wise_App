@@ -60,10 +60,10 @@ class S {
     );
   }
 
-  /// `Realtime Score`
+  /// `Sports Archive`
   String get onboardingTitle2 {
     return Intl.message(
-      'Realtime Score',
+      'Sports Archive',
       name: 'onboardingTitle2',
       desc: '',
       args: [],
@@ -110,20 +110,20 @@ class S {
     );
   }
 
-  /// `With our app, the stadium comes to you! Catch live games`
+  /// `With our app, the stadium comes to you!`
   String get onboardingDescription1 {
     return Intl.message(
-      'With our app, the stadium comes to you! Catch live games',
+      'With our app, the stadium comes to you!',
       name: 'onboardingDescription1',
       desc: '',
       args: [],
     );
   }
 
-  /// `Enjoy score match score updates in realtime without missing a moment`
+  /// `ALl waht you want to know, in one App`
   String get onboardingDescription2 {
     return Intl.message(
-      'Enjoy score match score updates in realtime without missing a moment',
+      'ALl waht you want to know, in one App',
       name: 'onboardingDescription2',
       desc: '',
       args: [],
@@ -150,10 +150,10 @@ class S {
     );
   }
 
-  /// `There are many interisting Sports to choose XD`
+  /// `Choose your Fav Sport XD`
   String get homeScreenTitle {
     return Intl.message(
-      'There are many interisting Sports to choose XD',
+      'Choose your Fav Sport XD',
       name: 'homeScreenTitle',
       desc: '',
       args: [],
@@ -205,6 +205,16 @@ class S {
     return Intl.message(
       'Coming Soon^_^',
       name: 'comingSoonMessage',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Light Mode is Coming Soon ^_^`
+  String get themeComingSoonMessage {
+    return Intl.message(
+      'Light Mode is Coming Soon ^_^',
+      name: 'themeComingSoonMessage',
       desc: '',
       args: [],
     );
@@ -350,6 +360,16 @@ class S {
     );
   }
 
+  /// `No matching found`
+  String get teamsNotExcistMessage {
+    return Intl.message(
+      'No matching found',
+      name: 'teamsNotExcistMessage',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `TopScorers`
   String get topScorersTitle {
     return Intl.message(
@@ -360,11 +380,151 @@ class S {
     );
   }
 
+  /// `Top Scorers are not available`
+  String get topScorersNotExcistMessage {
+    return Intl.message(
+      'Top Scorers are not available',
+      name: 'topScorersNotExcistMessage',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Team`
+  String get topScorersTeamTitle {
+    return Intl.message(
+      'Team',
+      name: 'topScorersTeamTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Number`
+  String get topScorersNumberTitle {
+    return Intl.message(
+      'Number',
+      name: 'topScorersNumberTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Goals`
+  String get topScorersGoalsTitle {
+    return Intl.message(
+      'Goals',
+      name: 'topScorersGoalsTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Search here`
   String get searchBarHintText {
     return Intl.message(
       'Search here',
       name: 'searchBarHintText',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Name: `
+  String get playerNameDialog {
+    return Intl.message(
+      'Name: ',
+      name: 'playerNameDialog',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Number: `
+  String get playerNumberDialog {
+    return Intl.message(
+      'Number: ',
+      name: 'playerNumberDialog',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Country: `
+  String get playerCountryDialog {
+    return Intl.message(
+      'Country: ',
+      name: 'playerCountryDialog',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Position: `
+  String get playerPositionDialog {
+    return Intl.message(
+      'Position: ',
+      name: 'playerPositionDialog',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Age: `
+  String get playerAgeDialog {
+    return Intl.message(
+      'Age: ',
+      name: 'playerAgeDialog',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Yellow Cards: `
+  String get playerYellowCardDialog {
+    return Intl.message(
+      'Yellow Cards: ',
+      name: 'playerYellowCardDialog',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Red Cards: `
+  String get playerRedCardDialog {
+    return Intl.message(
+      'Red Cards: ',
+      name: 'playerRedCardDialog',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Goals: `
+  String get playerGoalsDialog {
+    return Intl.message(
+      'Goals: ',
+      name: 'playerGoalsDialog',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Assists: `
+  String get playerAssistsDialog {
+    return Intl.message(
+      'Assists: ',
+      name: 'playerAssistsDialog',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No Matching found`
+  String get playerNotExcistMessage {
+    return Intl.message(
+      'No Matching found',
+      name: 'playerNotExcistMessage',
       desc: '',
       args: [],
     );

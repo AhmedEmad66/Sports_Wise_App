@@ -15,8 +15,12 @@ class TeamPlayersRepo {
       Map<String, dynamic> decodeResponse = json.decode(response.body);
       if (response.statusCode == 200) {
         TeamPlayersModel players = TeamPlayersModel.fromJson(decodeResponse);
-        print("Requist success");
-        return players;
+        if (players.result != null) {
+          print("Requist success");
+          return players;
+        } else {
+          print("Value Is Null");
+        }
       } else if (response.statusCode == 404) {
         print("Data not found on the server.");
       } else {
@@ -35,8 +39,12 @@ class TeamPlayersRepo {
       Map<String, dynamic> decodeResponse = json.decode(response.body);
       if (response.statusCode == 200) {
         TeamPlayersModel players = TeamPlayersModel.fromJson(decodeResponse);
-        print("Requist success");
-        return players;
+        if (players.result != null) {
+          print("Requist success");
+          return players;
+        } else {
+          print("Value is Null");
+        }
       } else if (response.statusCode == 404) {
         print("Data not found on the server.");
       } else {

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../Data/Models/team_players_model/result.dart';
 import '../Res/app_colors.dart';
+import '../generated/l10n.dart';
 
 class CustomText extends StatelessWidget {
   const CustomText({
@@ -24,7 +25,7 @@ class CustomText extends StatelessWidget {
           children: <TextSpan>[
             TextSpan(
               text: answer,
-              style:  TextStyle(
+              style:  const TextStyle(
                 color: AppColors.kPrimaryColor,
                 fontSize: 25,
                 fontFamily: "Ubuntu",
@@ -53,7 +54,7 @@ class PlayerDialogInfo extends StatelessWidget {
           : ourPlayers[index].playerName == null
               ? const SizedBox()
               : CustomText(
-                  text: "Name: ",
+                  text: S.of(context).playerNameDialog,
                   answer: ourPlayers[index].playerName ?? "",
                 ),
       ourPlayers[index].playerType == ""
@@ -61,7 +62,7 @@ class PlayerDialogInfo extends StatelessWidget {
           : ourPlayers[index].playerType == null
               ? const SizedBox()
               : CustomText(
-                  text: "Position: ",
+                  text: S.of(context).playerPositionDialog,
                   answer: ourPlayers[index].playerType ?? '',
                 ),
       ourPlayers[index].playerNumber == ""
@@ -69,7 +70,7 @@ class PlayerDialogInfo extends StatelessWidget {
           : ourPlayers[index].playerNumber == null
               ? const SizedBox()
               : CustomText(
-                  text: "Number: ",
+                  text: S.of(context).playerNumberDialog,
                   answer: ourPlayers[index].playerNumber ?? "",
                 ),
       ourPlayers[index].playerAge == ""
@@ -77,7 +78,7 @@ class PlayerDialogInfo extends StatelessWidget {
           : ourPlayers[index].playerAge == null
               ? const SizedBox()
               : CustomText(
-                  text: "Age: ",
+                  text: S.of(context).playerAgeDialog,
                   answer: ourPlayers[index].playerAge ?? '',
                 ),
       ourPlayers[index].playerCountry == ""
@@ -85,7 +86,7 @@ class PlayerDialogInfo extends StatelessWidget {
           : ourPlayers[index].playerCountry == null
               ? const SizedBox()
               : CustomText(
-                  text: "Country: ",
+                  text: S.of(context).playerCountryDialog,
                   answer: ourPlayers[index].playerCountry ?? "NotAllowed",
                 ),
       ourPlayers[index].playerYellowCards == ""
@@ -93,7 +94,7 @@ class PlayerDialogInfo extends StatelessWidget {
           : ourPlayers[index].playerYellowCards == null
               ? const SizedBox()
               : CustomText(
-                  text: "Yellow Cards: ",
+                  text: S.of(context).playerYellowCardDialog,
                   answer: ourPlayers[index].playerYellowCards ?? '',
                 ),
       ourPlayers[index].playerRedCards == ""
@@ -101,7 +102,7 @@ class PlayerDialogInfo extends StatelessWidget {
           : ourPlayers[index].playerRedCards == null
               ? const SizedBox()
               : CustomText(
-                  text: "Red Cards: ",
+                  text: S.of(context).playerRedCardDialog,
                   answer: ourPlayers[index].playerRedCards ?? '',
                 ),
       ourPlayers[index].playerGoals == ""
@@ -109,7 +110,7 @@ class PlayerDialogInfo extends StatelessWidget {
           : ourPlayers[index].playerGoals == null
               ? const SizedBox()
               : CustomText(
-                  text: "Goals: ",
+                  text: S.of(context).playerGoalsDialog,
                   answer: ourPlayers[index].playerGoals ?? '',
                 ),
       ourPlayers[index].playerAssists == ""
@@ -117,7 +118,7 @@ class PlayerDialogInfo extends StatelessWidget {
           : ourPlayers[index].playerAssists == null
               ? const SizedBox()
               : CustomText(
-                  text: "Assists: ",
+                  text: S.of(context).playerAssistsDialog,
                   answer: ourPlayers[index].playerAssists ?? '',
                 ),
     ]);

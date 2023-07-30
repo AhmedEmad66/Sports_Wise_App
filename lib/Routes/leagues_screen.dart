@@ -51,7 +51,7 @@ class LeaguesScreen extends StatelessWidget {
                   ),
                   Text(
                     S.of(context).leaguesScreenTitle,
-                    style:  TextStyle(
+                    style:  const TextStyle(
                       fontSize: 30,
                       fontFamily: "Ubuntu",
                       fontWeight: FontWeight.w600,
@@ -131,7 +131,7 @@ class LeaguesScreen extends StatelessWidget {
                                           context,
                                           MaterialPageRoute(
                                               builder: (context) =>
-                                                  TeamsAndTopScorers()));
+                                                  const TeamsAndTopScorers()));
                                       leagueId = ourLeagues[i].leagueKey;
                                       context
                                           .read<LeagueTeamsCubit>()

@@ -33,8 +33,12 @@ class LeagueTeamsRepo {
       Map<String, dynamic> decodeResponse = json.decode(response.body);
       if (response.statusCode == 200) {
         LeagueTeamsModel teams = LeagueTeamsModel.fromJson(decodeResponse);
-        print("Requist success");
-        return teams;
+        if (teams.result != null) {
+          print("Requist success");
+          return teams;
+        } else {
+          print("Value is Null");
+        }
       } else {
         print("Requist Faild");
         return null;

@@ -59,7 +59,7 @@ class _CountriesScreenState extends State<CountriesScreen> {
                   ),
                   Text(
                     S.of(context).countryScreenTitle,
-                    style:  TextStyle(
+                    style:  const TextStyle(
                       fontSize: 30,
                       fontFamily: "Ubuntu",
                       fontWeight: FontWeight.w600,

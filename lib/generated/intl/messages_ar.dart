@@ -23,12 +23,12 @@ class MessageLookup extends MessageLookupByLibrary {
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "basketballCategory": MessageLookupByLibrary.simpleMessage("كرة السلة"),
-        "comingSoonMessage": MessageLookupByLibrary.simpleMessage("^_^قريبا"),
+        "comingSoonMessage": MessageLookupByLibrary.simpleMessage("قريبا ^_^"),
         "countryScreenTitle": MessageLookupByLibrary.simpleMessage("الدول"),
         "developerInfo": MessageLookupByLibrary.simpleMessage("معلومات المطور"),
         "footballCategory": MessageLookupByLibrary.simpleMessage("كرة القدم"),
-        "homeScreenTitle": MessageLookupByLibrary.simpleMessage(
-            "يوجد العديد من الرياضات لتختارها :"),
+        "homeScreenTitle":
+            MessageLookupByLibrary.simpleMessage("اختار رياضاتك المفضلة"),
         "languages": MessageLookupByLibrary.simpleMessage("اللغات"),
         "leaguesScreenTitle": MessageLookupByLibrary.simpleMessage("البطولات"),
         "messageOkBtn": MessageLookupByLibrary.simpleMessage("تم"),
@@ -42,7 +42,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "onboardingDescription1":
             MessageLookupByLibrary.simpleMessage("معنا! ياتي الملعب اليك"),
         "onboardingDescription2": MessageLookupByLibrary.simpleMessage(
-            "استمتع بكل المباريات بدون تفويت اي لحظه"),
+            "كل ما تريد معرفتة في مكان واحد"),
         "onboardingDescription3": MessageLookupByLibrary.simpleMessage(
             "نزودك بتغطيه جيده مع تحليل عميق للخبر"),
         "onboardingNumber1": MessageLookupByLibrary.simpleMessage("١ من ٣"),
@@ -51,16 +51,40 @@ class MessageLookup extends MessageLookupByLibrary {
         "onboardingTitle1": MessageLookupByLibrary.simpleMessage(
             "اعرف الخبر من اي مكان وفي اي وقت"),
         "onboardingTitle2":
-            MessageLookupByLibrary.simpleMessage("نتائج حقيقيه وفوريه"),
+            MessageLookupByLibrary.simpleMessage("ارشيفك للرياضة"),
         "onboardingTitle3": MessageLookupByLibrary.simpleMessage("لنبدأ !"),
+        "playerAgeDialog": MessageLookupByLibrary.simpleMessage("السن: "),
+        "playerAssistsDialog":
+            MessageLookupByLibrary.simpleMessage("صناعة الاهداف"),
+        "playerCountryDialog": MessageLookupByLibrary.simpleMessage("الدولة: "),
+        "playerGoalsDialog": MessageLookupByLibrary.simpleMessage("الاهداف: "),
+        "playerNameDialog": MessageLookupByLibrary.simpleMessage("الاسم: "),
+        "playerNotExcistMessage":
+            MessageLookupByLibrary.simpleMessage("لا يوجد"),
+        "playerNumberDialog": MessageLookupByLibrary.simpleMessage("الرقم: "),
+        "playerPositionDialog":
+            MessageLookupByLibrary.simpleMessage("المركز: "),
+        "playerRedCardDialog":
+            MessageLookupByLibrary.simpleMessage("الكروت الحمراء: "),
+        "playerYellowCardDialog":
+            MessageLookupByLibrary.simpleMessage("الكروت الصفراء: "),
         "searchBarHintText": MessageLookupByLibrary.simpleMessage("ابحث..."),
         "sideMenuTitle": MessageLookupByLibrary.simpleMessage("القائمة :"),
         "skipBtn": MessageLookupByLibrary.simpleMessage("تخطي"),
         "support": MessageLookupByLibrary.simpleMessage("الدعم"),
+        "teamsNotExcistMessage":
+            MessageLookupByLibrary.simpleMessage("لا يوجد"),
         "teamsTitle": MessageLookupByLibrary.simpleMessage("الفرق"),
         "tennisCategory": MessageLookupByLibrary.simpleMessage("تنس"),
+        "themeComingSoonMessage":
+            MessageLookupByLibrary.simpleMessage("الوضع المضيئ قريبا ^_^"),
         "themeModeDark": MessageLookupByLibrary.simpleMessage("الوضع الليلي"),
         "themeModeLight": MessageLookupByLibrary.simpleMessage("الوضع المضيئ"),
+        "topScorersGoalsTitle": MessageLookupByLibrary.simpleMessage("الاهداف"),
+        "topScorersNotExcistMessage":
+            MessageLookupByLibrary.simpleMessage("الهدافين غير متاحين"),
+        "topScorersNumberTitle": MessageLookupByLibrary.simpleMessage("الرقم"),
+        "topScorersTeamTitle": MessageLookupByLibrary.simpleMessage("الفريق"),
         "topScorersTitle": MessageLookupByLibrary.simpleMessage("الهدافين"),
         "vollyballCategory": MessageLookupByLibrary.simpleMessage("كرة الطائرة")
       };

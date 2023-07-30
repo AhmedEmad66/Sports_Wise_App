@@ -3,17 +3,19 @@ import 'package:sport_wise_app/Res/app_colors.dart';
 
 typedef OnTextChangedCallback = void Function(String);
 
-class SearchBar extends StatelessWidget {
-  const SearchBar({
+class CustomSearchBar extends StatelessWidget {
+  const CustomSearchBar({
     super.key,
     required this.hintText,
     required this.width,
     required this.controller,
     required this.onPressed,
+    required this.focusNode,
   });
   final String hintText;
   final double width;
   final TextEditingController controller;
+  final FocusNode focusNode;
   final VoidCallback onPressed;
 
   @override
@@ -27,6 +29,7 @@ class SearchBar extends StatelessWidget {
       ),
       child: TextFormField(
         controller: controller,
+        focusNode: focusNode,
         cursorColor: AppColors.kPrimaryColor,
         style: const TextStyle(
           color: AppColors.kMyWhite,
@@ -37,16 +40,18 @@ class SearchBar extends StatelessWidget {
         keyboardType: TextInputType.text,
         textInputAction: TextInputAction.search,
         decoration: InputDecoration(
-          hintText: hintText,
-          hintStyle: const TextStyle(
-            color: AppColors.kMyLightGrey,
-            fontSize: 16,
-            fontFamily: "Ubuntu",
-            fontWeight: FontWeight.w500,
+          label: Text(
+            hintText,
+            style: const TextStyle(
+              color: AppColors.kMyLightGrey,
+              fontSize: 16,
+              fontFamily: "Ubuntu",
+              fontWeight: FontWeight.w500,
+            ),
           ),
           suffix: InkWell(
             onTap: onPressed,
-            child:  Icon(
+            child: const Icon(
               Icons.search_rounded,
               color: AppColors.kPrimaryColor,
             ),
@@ -54,7 +59,7 @@ class SearchBar extends StatelessWidget {
           border: InputBorder.none,
           enabledBorder: InputBorder.none,
           focusedBorder: OutlineInputBorder(
-            borderSide:  BorderSide(color: AppColors.kPrimaryColor),
+            borderSide: const BorderSide(color: AppColors.kPrimaryColor),
             borderRadius: BorderRadius.circular(14),
           ),
           contentPadding: const EdgeInsets.only(

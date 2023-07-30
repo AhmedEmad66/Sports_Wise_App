@@ -128,7 +128,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                                     builder: (context) => const HomeScreen()));
                           },
                           borderThickness: 1,
-                          borderColor:  [
+                          borderColor:  const [
                             AppColors.kMyLightGrey,
                             AppColors.kPrimaryColor,
                           ],

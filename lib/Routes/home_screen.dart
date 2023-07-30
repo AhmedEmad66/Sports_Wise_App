@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sport_wise_app/Data/Cubits/Change_Language_Cubit/change_language_cubit.dart';
-import 'package:sport_wise_app/Data/Cubits/Theme_Mode_Cubit/theme_mode_switch_cubit.dart';
 import 'package:sport_wise_app/Res/app_colors.dart';
 import 'package:sport_wise_app/Res/app_images.dart';
 import 'package:sport_wise_app/Res/app_strings.dart';
@@ -59,7 +58,7 @@ class HomeScreen extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    S.of(context).themeModeLight,
+                    S.of(context).themeModeDark,
                     style: const TextStyle(
                       fontFamily: "Ubuntu",
                       fontSize: 25,
@@ -67,16 +66,26 @@ class HomeScreen extends StatelessWidget {
                       fontWeight: FontWeight.w700,
                     ),
                   ),
-                  BlocBuilder<ThemeModeSwitchCubit, bool>(
-                    builder: (context, state) {
-                      return Switch(
-                        value: state,
-                        onChanged: (value) {
-                          context.read<ThemeModeSwitchCubit>().isSwitched();
-                        },
-                        activeColor: AppColors.kPrimaryColor,
-                      );
+                  Switch(
+                    value: true,
+                    onChanged: (value) {
+                      AwesomeDialog(
+                        context: context,
+                        dialogBackgroundColor: AppColors.kBackGroundColor,
+                        dialogType: DialogType.warning,
+                        animType: AnimType.rightSlide,
+                        desc: S.of(context).themeComingSoonMessage,
+                        descTextStyle: const TextStyle(
+                          color: AppColors.kMyWhite,
+                          fontSize: 25,
+                          fontFamily: "MyFont",
+                        ),
+                        btnOkOnPress: () {},
+                        btnOkColor: AppColors.kMyDarkGrey,
+                        btnOkText: S.of(context).messageOkBtn,
+                      ).show();
                     },
+                    activeColor: AppColors.kPrimaryColor,
                   ),
                 ],
               ),
@@ -244,6 +253,7 @@ class HomeScreen extends StatelessWidget {
               ),
               Text(
                 S.of(context).homeScreenTitle,
+                textAlign: TextAlign.center,
                 style: const TextStyle(
                   fontSize: 30,
                   color: AppColors.kPrimaryColor,

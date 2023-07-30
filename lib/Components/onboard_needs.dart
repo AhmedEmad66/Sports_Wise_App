@@ -32,7 +32,7 @@ class OnboardContent extends StatelessWidget {
           margin: const EdgeInsets.fromLTRB(24, 0, 24, 0),
           width: 73,
           // height: 15,
-          decoration:  BoxDecoration(
+          decoration:  const BoxDecoration(
               color: AppColors.kPrimaryColor,
               borderRadius: BorderRadius.all(Radius.circular(27.5))),
           child: Center(

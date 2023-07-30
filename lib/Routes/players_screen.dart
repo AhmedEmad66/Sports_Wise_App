@@ -13,11 +13,25 @@ import '../Res/app_images.dart';
 import '../Res/app_strings.dart';
 import '../generated/l10n.dart';
 
-class PlayerScreen extends StatelessWidget {
-  PlayerScreen({super.key, required this.teamName});
+class PlayerScreen extends StatefulWidget {
+  const PlayerScreen({super.key, required this.teamName});
   final String teamName;
 
-  TextEditingController _searchPlayerController = TextEditingController();
+  @override
+  State<PlayerScreen> createState() => _PlayerScreenState();
+}
+
+class _PlayerScreenState extends State<PlayerScreen> {
+  final TextEditingController _searchPlayerController = TextEditingController();
+  final FocusNode _searchFocusNode = FocusNode();
+
+  @override
+  void dispose() {
+    _searchPlayerController.dispose();
+    _searchFocusNode.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -49,9 +63,9 @@ class PlayerScreen extends StatelessWidget {
                     flex: 1,
                   ),
                   Text(
-                    teamName,
+                    widget.teamName,
                     style: TextStyle(
-                      fontSize: teamName.length < 17 ? 30 : 20,
+                      fontSize: widget.teamName.length < 17 ? 30 : 20,
                       fontFamily: "Ubuntu",
                       fontWeight: FontWeight.w600,
                       color: AppColors.kPrimaryColor,
@@ -66,12 +80,14 @@ class PlayerScreen extends StatelessWidget {
                 height: 20,
               ),
               Form(
-                child: SearchBar(
+                child: CustomSearchBar(
                   hintText: S.of(context).searchBarHintText,
                   width: double.infinity,
                   controller: _searchPlayerController,
+                  focusNode: _searchFocusNode,
                   onPressed: () {
                     playerName = _searchPlayerController.text;
+                    _searchFocusNode.unfocus();
                     context.read<TeamPlayersCubit>().searchPlayer();
                     _searchPlayerController.text = "";
                   },
@@ -80,7 +96,7 @@ class PlayerScreen extends StatelessWidget {
               const SizedBox(
                 height: 10,
               ),
-               Divider(
+              const Divider(
                 color: AppColors.kPrimaryColor,
                 thickness: 2,
               ),
@@ -154,13 +170,29 @@ class PlayerScreen extends StatelessWidget {
                                         context: context,
                                         dialogBackgroundColor:
                                             AppColors.kBackGroundColor,
-                                        customHeader: CircleAvatar(
-                                          backgroundColor:
-                                              AppColors.kMyDarkGrey,
-                                          radius: 55,
-                                          backgroundImage: NetworkImage(
-                                            ourPlayers[index].playerImage ??
-                                                AppImages.kImageNotFound,
+                                        customHeader: Container(
+                                          height: 120,
+                                          width: 120,
+                                          decoration: BoxDecoration(
+                                            color: AppColors.kMyWhite,
+                                            borderRadius:
+                                                BorderRadius.circular(70),
+                                          ),
+                                          child: ClipRRect(
+                                            borderRadius:
+                                                BorderRadius.circular(70),
+                                            child: Image.network(
+                                              ourPlayers[index].playerImage ??
+                                                  AppImages.kImageNotFound,
+                                              fit: BoxFit.fill,
+                                              errorBuilder: (context, exception,
+                                                  stackTrace) {
+                                                return Image.network(
+                                                  AppImages.kImageNotFound,
+                                                  fit: BoxFit.fill,
+                                                );
+                                              },
+                                            ),
                                           ),
                                         ),
                                         animType: AnimType.rightSlide,
@@ -185,13 +217,30 @@ class PlayerScreen extends StatelessWidget {
                                       ),
                                       child: Row(
                                         children: [
-                                          CircleAvatar(
-                                            backgroundColor: AppColors.kMyWhite,
-                                            backgroundImage: NetworkImage(
-                                              ourPlayers[index].playerImage ??
-                                                  AppImages.kImageNotFound,
+                                          Container(
+                                            height: 70,
+                                            width: 70,
+                                            decoration: BoxDecoration(
+                                              color: AppColors.kMyWhite,
+                                              borderRadius:
+                                                  BorderRadius.circular(50),
                                             ),
-                                            radius: 35,
+                                            child: ClipRRect(
+                                              borderRadius:
+                                                  BorderRadius.circular(50),
+                                              child: Image.network(
+                                                ourPlayers[index].playerImage ??
+                                                    AppImages.kImageNotFound,
+                                                fit: BoxFit.fill,
+                                                errorBuilder: (context,
+                                                    exception, stackTrace) {
+                                                  return Image.network(
+                                                    AppImages.kImageNotFound,
+                                                    fit: BoxFit.fill,
+                                                  );
+                                                },
+                                              ),
+                                            ),
                                           ),
                                           const SizedBox(
                                             width: 15,
@@ -242,13 +291,25 @@ class PlayerScreen extends StatelessWidget {
                         ),
                       );
                     } else {
-                      return const Center(
-                        child: Text(
-                          "Requst is Faild",
-                          style: TextStyle(
-                            color: AppColors.kMyWhite,
-                            fontFamily: "Ubuntu",
-                            fontSize: 25,
+                      return Center(
+                        child: Container(
+                          margin: const EdgeInsets.symmetric(horizontal: 20),
+                          height: 200,
+                          width: double.infinity,
+                          decoration: BoxDecoration(
+                            color: AppColors.kMyDarkGrey,
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                          child: Center(
+                            child: Text(
+                              S.of(context).playerNotExcistMessage,
+                              textAlign: TextAlign.center,
+                              style: const TextStyle(
+                                color: AppColors.kMyWhite,
+                                fontFamily: "Ubuntu",
+                                fontSize: 25,
+                              ),
+                            ),
                           ),
                         ),
                       );

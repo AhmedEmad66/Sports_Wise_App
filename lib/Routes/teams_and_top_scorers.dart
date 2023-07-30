@@ -16,12 +16,25 @@ import '../Res/app_images.dart';
 import '../Res/app_strings.dart';
 import '../generated/l10n.dart';
 
-class TeamsAndTopScorers extends StatelessWidget {
-  TeamsAndTopScorers({super.key});
+class TeamsAndTopScorers extends StatefulWidget {
+  const TeamsAndTopScorers({super.key});
   // Named Route
   static const String id = "TeamsAndPlayersScreen";
 
-  TextEditingController _searchTeamController = TextEditingController();
+  @override
+  State<TeamsAndTopScorers> createState() => _TeamsAndTopScorersState();
+}
+
+class _TeamsAndTopScorersState extends State<TeamsAndTopScorers> {
+  final TextEditingController _searchTeamController = TextEditingController();
+  final FocusNode _searchFocusNode = FocusNode();
+
+  @override
+  void dispose() {
+    _searchTeamController.dispose();
+    _searchFocusNode.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -136,13 +149,15 @@ class TeamsAndTopScorers extends StatelessWidget {
                                   padding: const EdgeInsets.symmetric(
                                       horizontal: 10),
                                   child: Form(
-                                    child: SearchBar(
+                                    child: CustomSearchBar(
                                       hintText: S.of(context).searchBarHintText,
                                       width: double.infinity,
                                       controller: _searchTeamController,
+                                      focusNode: _searchFocusNode,
                                       onPressed: () {
                                         apiTeamName =
                                             _searchTeamController.text;
+                                        _searchFocusNode.unfocus();
                                         context
                                             .read<LeagueTeamsCubit>()
                                             .searchTeam();
@@ -214,13 +229,46 @@ class TeamsAndTopScorers extends StatelessWidget {
                                                         SizedBox(
                                                           height: 110,
                                                           width: 130,
-                                                          child: Image.network(
-                                                            ourTeams[index]
-                                                                    .teamLogo ??
-                                                                AppImages
-                                                                    .kImageNotFound,
-                                                            fit: BoxFit.fill,
+                                                          child: ClipRRect(
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        50),
+                                                            child:
+                                                                Image.network(
+                                                              ourTeams[index]
+                                                                      .teamLogo ??
+                                                                  AppImages
+                                                                      .kImageNotFound,
+                                                              fit: BoxFit.fill,
+                                                              errorBuilder:
+                                                                  (context,
+                                                                      exception,
+                                                                      stackTrace) {
+                                                                return ClipRRect(
+                                                                  borderRadius:
+                                                                      BorderRadius
+                                                                          .circular(
+                                                                              100),
+                                                                  child: Image
+                                                                      .network(
+                                                                    AppImages
+                                                                        .kImageNotFound,
+                                                                    fit: BoxFit
+                                                                        .fill,
+                                                                  ),
+                                                                );
+                                                              },
+                                                            ),
                                                           ),
+
+                                                          // Image.network(
+                                                          //   ourTeams[index]
+                                                          //           .teamLogo ??
+                                                          //       AppImages
+                                                          //           .kImageNotFound,
+                                                          //   fit: BoxFit.fill,
+                                                          // ),
                                                         ),
                                                         Align(
                                                           alignment: Alignment
@@ -263,15 +311,54 @@ class TeamsAndTopScorers extends StatelessWidget {
                               ],
                             );
                           } else {
-                            return const Center(
-                              child: Text(
-                                "Requst is Faild",
-                                style: TextStyle(
-                                  color: AppColors.kMyWhite,
-                                  fontFamily: "Ubuntu",
-                                  fontSize: 25,
+                            return Column(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 10),
+                                  child: Form(
+                                    child: CustomSearchBar(
+                                      hintText: S.of(context).searchBarHintText,
+                                      width: double.infinity,
+                                      controller: _searchTeamController,
+                                      focusNode: _searchFocusNode,
+                                      onPressed: () {
+                                        apiTeamName =
+                                            _searchTeamController.text;
+                                        _searchFocusNode.unfocus();
+                                        context
+                                            .read<LeagueTeamsCubit>()
+                                            .searchTeam();
+                                        _searchTeamController.text = "";
+                                      },
+                                    ),
+                                  ),
                                 ),
-                              ),
+                                const Spacer(),
+                                Container(
+                                  margin: const EdgeInsets.symmetric(
+                                      horizontal: 20),
+                                  height: 200,
+                                  width: double.infinity,
+                                  decoration: BoxDecoration(
+                                    color: AppColors.kMyDarkGrey,
+                                    borderRadius: BorderRadius.circular(20),
+                                  ),
+                                  child: Center(
+                                    child: Text(
+                                      S.of(context).teamsNotExcistMessage,
+                                      textAlign: TextAlign.center,
+                                      style: const TextStyle(
+                                        color: AppColors.kMyWhite,
+                                        fontFamily: "Ubuntu",
+                                        fontSize: 25,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                const Spacer(),
+                              ],
                             );
                           }
                         },
@@ -406,9 +493,12 @@ class TeamsAndTopScorers extends StatelessWidget {
                                                           CrossAxisAlignment
                                                               .center,
                                                       children: [
-                                                        const Text(
-                                                          "Team",
-                                                          style: TextStyle(
+                                                        Text(
+                                                          S
+                                                              .of(context)
+                                                              .topScorersTeamTitle,
+                                                          style:
+                                                              const TextStyle(
                                                             fontSize: 15,
                                                             fontWeight:
                                                                 FontWeight.w600,
@@ -448,9 +538,12 @@ class TeamsAndTopScorers extends StatelessWidget {
                                                           CrossAxisAlignment
                                                               .center,
                                                       children: [
-                                                        const Text(
-                                                          "Number",
-                                                          style: TextStyle(
+                                                        Text(
+                                                          S
+                                                              .of(context)
+                                                              .topScorersNumberTitle,
+                                                          style:
+                                                              const TextStyle(
                                                             fontSize: 15,
                                                             fontWeight:
                                                                 FontWeight.w600,
@@ -484,9 +577,12 @@ class TeamsAndTopScorers extends StatelessWidget {
                                                           CrossAxisAlignment
                                                               .center,
                                                       children: [
-                                                        const Text(
-                                                          "Goals",
-                                                          style: TextStyle(
+                                                        Text(
+                                                          S
+                                                              .of(context)
+                                                              .topScorersGoalsTitle,
+                                                          style:
+                                                              const TextStyle(
                                                             fontSize: 15,
                                                             fontWeight:
                                                                 FontWeight.w600,
@@ -524,13 +620,26 @@ class TeamsAndTopScorers extends StatelessWidget {
                               ),
                             );
                           } else {
-                            return const Center(
-                              child: Text(
-                                "Requst is Faild",
-                                style: TextStyle(
-                                  color: AppColors.kMyWhite,
-                                  fontFamily: "Ubuntu",
-                                  fontSize: 25,
+                            return Center(
+                              child: Container(
+                                margin:
+                                    const EdgeInsets.symmetric(horizontal: 20),
+                                height: 200,
+                                width: double.infinity,
+                                decoration: BoxDecoration(
+                                  color: AppColors.kMyDarkGrey,
+                                  borderRadius: BorderRadius.circular(20),
+                                ),
+                                child: Center(
+                                  child: Text(
+                                    S.of(context).topScorersNotExcistMessage,
+                                    textAlign: TextAlign.center,
+                                    style: const TextStyle(
+                                      color: AppColors.kMyWhite,
+                                      fontFamily: "Ubuntu",
+                                      fontSize: 25,
+                                    ),
+                                  ),
                                 ),
                               ),
                             );

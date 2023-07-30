@@ -1,23 +1,24 @@
 {
     
     "onboardingTitle1" : "اعرف الخبر من اي مكان وفي اي وقت",
-    "onboardingTitle2" : "نتائج حقيقيه وفوريه",
+    "onboardingTitle2" : "ارشيفك للرياضة",
     "onboardingTitle3" : "لنبدأ !",
     "onboardingNumber1" : "١ من ٣",
     "onboardingNumber2" : "٢ من ٣",
     "onboardingNumber3" : "٣ من ٣",
     "onboardingDescription1" : "معنا! ياتي الملعب اليك",
-    "onboardingDescription2" : "استمتع بكل المباريات بدون تفويت اي لحظه",
+    "onboardingDescription2" : "كل ما تريد معرفتة في مكان واحد",
     "onboardingDescription3" : "نزودك بتغطيه جيده مع تحليل عميق للخبر",
     "skipBtn" : "تخطي",
 
-    "homeScreenTitle": "يوجد العديد من الرياضات لتختارها :",
+    "homeScreenTitle": "اختار رياضاتك المفضلة",
     "footballCategory" : "كرة القدم",
     "basketballCategory" : "كرة السلة",
     "vollyballCategory" : "كرة الطائرة",
     "tennisCategory" : "تنس",
 
-    "comingSoonMessage" : "^_^قريبا",
+    "comingSoonMessage" : "قريبا ^_^",
+    "themeComingSoonMessage" : "الوضع المضيئ قريبا ^_^",
     "messageOkBtn" : "تم",
     "messageSupportTitle" : "راسلنا",
     "messageSupportDes1" : "٢٠١٢٨٢٦١٤٨٨٥+",
@@ -36,8 +37,29 @@
     "leaguesScreenTitle" : "البطولات",
     
     "teamsTitle" : "الفرق",
+    "teamsNotExcistMessage" : "لا يوجد",
+
+
+
     "topScorersTitle" : "الهدافين",
+    "topScorersNotExcistMessage" : "الهدافين غير متاحين",
+    "topScorersTeamTitle" : "الفريق",
+    "topScorersNumberTitle" : "الرقم",
+    "topScorersGoalsTitle" : "الاهداف",
     
-    "searchBarHintText" : "ابحث..."
+    "searchBarHintText" : "ابحث...",
+
+
+
+    "playerNameDialog" : "الاسم: ",
+    "playerNumberDialog" : "الرقم: ",
+    "playerCountryDialog" : "الدولة: ",
+    "playerPositionDialog" : "المركز: ",
+    "playerAgeDialog" : "السن: ",
+    "playerYellowCardDialog" : "الكروت الصفراء: ",
+    "playerRedCardDialog" : "الكروت الحمراء: ",
+    "playerGoalsDialog" : "الاهداف: ",
+    "playerAssistsDialog" : "صناعة الاهداف",
+    "playerNotExcistMessage" : "لا يوجد"
     
 }

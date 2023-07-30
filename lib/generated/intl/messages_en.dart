@@ -30,8 +30,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("All Countries"),
         "developerInfo": MessageLookupByLibrary.simpleMessage("Developer Info"),
         "footballCategory": MessageLookupByLibrary.simpleMessage("Football"),
-        "homeScreenTitle": MessageLookupByLibrary.simpleMessage(
-            "There are many interisting Sports to choose XD"),
+        "homeScreenTitle":
+            MessageLookupByLibrary.simpleMessage("Choose your Fav Sport XD"),
         "languages": MessageLookupByLibrary.simpleMessage("Languages"),
         "leaguesScreenTitle":
             MessageLookupByLibrary.simpleMessage("All Tournaments"),
@@ -45,9 +45,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "messageSupportTitle":
             MessageLookupByLibrary.simpleMessage("Contact us"),
         "onboardingDescription1": MessageLookupByLibrary.simpleMessage(
-            "With our app, the stadium comes to you! Catch live games"),
+            "With our app, the stadium comes to you!"),
         "onboardingDescription2": MessageLookupByLibrary.simpleMessage(
-            "Enjoy score match score updates in realtime without missing a moment"),
+            "ALl waht you want to know, in one App"),
         "onboardingDescription3": MessageLookupByLibrary.simpleMessage(
             "we\'ve got you covered with comprehensive coverage and in-depth analysis"),
         "onboardingNumber1": MessageLookupByLibrary.simpleMessage("1 of 3"),
@@ -56,17 +56,42 @@ class MessageLookup extends MessageLookupByLibrary {
         "onboardingTitle1": MessageLookupByLibrary.simpleMessage(
             "Catch the Action Anywhere, Anytime"),
         "onboardingTitle2":
-            MessageLookupByLibrary.simpleMessage("Realtime Score"),
+            MessageLookupByLibrary.simpleMessage("Sports Archive"),
         "onboardingTitle3": MessageLookupByLibrary.simpleMessage("LET\'S GO!"),
+        "playerAgeDialog": MessageLookupByLibrary.simpleMessage("Age: "),
+        "playerAssistsDialog":
+            MessageLookupByLibrary.simpleMessage("Assists: "),
+        "playerCountryDialog":
+            MessageLookupByLibrary.simpleMessage("Country: "),
+        "playerGoalsDialog": MessageLookupByLibrary.simpleMessage("Goals: "),
+        "playerNameDialog": MessageLookupByLibrary.simpleMessage("Name: "),
+        "playerNotExcistMessage":
+            MessageLookupByLibrary.simpleMessage("No Matching found"),
+        "playerNumberDialog": MessageLookupByLibrary.simpleMessage("Number: "),
+        "playerPositionDialog":
+            MessageLookupByLibrary.simpleMessage("Position: "),
+        "playerRedCardDialog":
+            MessageLookupByLibrary.simpleMessage("Red Cards: "),
+        "playerYellowCardDialog":
+            MessageLookupByLibrary.simpleMessage("Yellow Cards: "),
         "searchBarHintText":
             MessageLookupByLibrary.simpleMessage("Search here"),
         "sideMenuTitle": MessageLookupByLibrary.simpleMessage("Side Menu"),
         "skipBtn": MessageLookupByLibrary.simpleMessage("Skip"),
         "support": MessageLookupByLibrary.simpleMessage("Support"),
+        "teamsNotExcistMessage":
+            MessageLookupByLibrary.simpleMessage("No matching found"),
         "teamsTitle": MessageLookupByLibrary.simpleMessage("Teams"),
         "tennisCategory": MessageLookupByLibrary.simpleMessage("Tennis"),
+        "themeComingSoonMessage": MessageLookupByLibrary.simpleMessage(
+            "Light Mode is Coming Soon ^_^"),
         "themeModeDark": MessageLookupByLibrary.simpleMessage("Dark Mode"),
         "themeModeLight": MessageLookupByLibrary.simpleMessage("Light Mode"),
+        "topScorersGoalsTitle": MessageLookupByLibrary.simpleMessage("Goals"),
+        "topScorersNotExcistMessage": MessageLookupByLibrary.simpleMessage(
+            "Top Scorers are not available"),
+        "topScorersNumberTitle": MessageLookupByLibrary.simpleMessage("Number"),
+        "topScorersTeamTitle": MessageLookupByLibrary.simpleMessage("Team"),
         "topScorersTitle": MessageLookupByLibrary.simpleMessage("TopScorers"),
         "vollyballCategory": MessageLookupByLibrary.simpleMessage("Vollyball")
       };

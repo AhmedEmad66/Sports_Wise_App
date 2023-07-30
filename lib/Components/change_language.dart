@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:restart_app/restart_app.dart';
 import 'package:sport_wise_app/Data/Cubits/Change_Language_Cubit/change_language_cubit.dart';
 import 'package:sport_wise_app/Res/app_images.dart';
 import 'package:sport_wise_app/Res/app_strings.dart';
 
-import '../Routes/splash_screen.dart';
 
 class ArabicLanguage extends StatelessWidget {
   const ArabicLanguage({super.key});

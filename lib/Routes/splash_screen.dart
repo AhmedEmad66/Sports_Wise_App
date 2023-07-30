@@ -116,7 +116,7 @@ class _SplashScreenState extends State<SplashScreen> {
               height: 10,
             ),
             // Slogan
-             Text(
+             const Text(
               AppStrings.kAppSlogan,
               style: TextStyle(
                 fontFamily: "Ubuntu",

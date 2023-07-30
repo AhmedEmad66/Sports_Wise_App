@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:sport_wise_app/Data/Cubits/Change_Language_Cubit/change_language_cubit.dart';
 import 'package:sport_wise_app/Data/Cubits/Theme_Mode_Cubit/theme_mode_switch_cubit.dart';
 import 'package:sport_wise_app/Res/app_colors.dart';
 import 'package:sport_wise_app/Res/app_images.dart';
+import 'package:sport_wise_app/Res/app_strings.dart';
 import 'package:sport_wise_app/Routes/countries_screen.dart';
 import 'package:awesome_dialog/awesome_dialog.dart';
 import '../Components/side_menu_btn.dart';
 import '../Data/Models/home_categories_model.dart';
+import '../Data/Models/language_model.dart';
 import '../generated/l10n.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -42,7 +45,7 @@ class HomeScreen extends StatelessWidget {
               ),
               Text(
                 S.of(context).sideMenuTitle,
-                style: TextStyle(
+                style: const TextStyle(
                   fontFamily: "MyFont",
                   fontSize: 35,
                   color: AppColors.kPrimaryColor,
@@ -57,7 +60,7 @@ class HomeScreen extends StatelessWidget {
                 children: [
                   Text(
                     S.of(context).themeModeLight,
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontFamily: "Ubuntu",
                       fontSize: 25,
                       color: AppColors.kMyWhite,
@@ -78,19 +81,142 @@ class HomeScreen extends StatelessWidget {
                 ],
               ),
               const SizedBox(
-                height: 25,
+                height: 10,
               ),
-              SideMenuBtn(
-                title: S.of(context).languages,
-                onTap: () {},
+              BlocBuilder<ChangeLanguageCubit, ChangeLocaleState>(
+                builder: (context, state) {
+                  return DropdownButton(
+                      // disabledHint: Text(S.of(context).languages),
+                      hint: Text(
+                        S.of(context).languages,
+                        style: const TextStyle(
+                          fontFamily: "Ubuntu",
+                          fontSize: 25,
+                          color: AppColors.kMyWhite,
+                          fontWeight: FontWeight.w700,
+                        ),
+                      ),
+                      style: const TextStyle(
+                        fontFamily: "Ubuntu",
+                        fontSize: 15,
+                        color: AppColors.kBackGroundColor,
+                        fontWeight: FontWeight.w700,
+                      ),
+                      icon: const Icon(
+                        Icons.language,
+                        color: AppColors.kMyLightGrey,
+                      ),
+                      underline: const SizedBox(),
+                      items: Language.languageList()
+                          .map<DropdownMenuItem<Language>>(
+                            (lang) => DropdownMenuItem(
+                              value: lang,
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                children: <Widget>[
+                                  Text(
+                                    lang.languageFlag,
+                                    style: const TextStyle(fontSize: 25),
+                                  ),
+                                  Text(lang.languageName),
+                                ],
+                              ),
+                            ),
+                          )
+                          .toList(),
+                      onChanged: (Language? language) {
+                        AppStrings.kAppLanguage = language!.languageCode;
+                        context
+                            .read<ChangeLanguageCubit>()
+                            .changeLanguege(language.languageCode);
+                        // Restart.restartApp(webOrigin: SplashScreen.id);
+                      });
+                },
+              ),
+              const SizedBox(
+                height: 20,
               ),
               SideMenuBtn(
                 title: S.of(context).support,
-                onTap: () {},
+                onTap: () {
+                  AwesomeDialog(
+                    context: context,
+                    dialogBackgroundColor: AppColors.kBackGroundColor,
+                    dialogType: DialogType.warning,
+                    animType: AnimType.rightSlide,
+                    body: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Text(
+                          S.of(context).messageSupportTitle,
+                          style: const TextStyle(
+                            color: AppColors.kMyLightGrey,
+                            fontSize: 25,
+                            fontFamily: "MyFont",
+                          ),
+                        ),
+                        Text(
+                          S.of(context).messageSupportDes1,
+                          style: const TextStyle(
+                            color: AppColors.kMyWhite,
+                            fontSize: 25,
+                            fontFamily: "MyFont",
+                          ),
+                        ),
+                        Text(
+                          S.of(context).messageSupportDes2,
+                          style: const TextStyle(
+                            color: AppColors.kMyWhite,
+                            fontSize: 25,
+                            fontFamily: "MyFont",
+                          ),
+                        ),
+                        Text(
+                          S.of(context).messageSupportDes3,
+                          style: const TextStyle(
+                            color: AppColors.kMyWhite,
+                            fontSize: 25,
+                            fontFamily: "MyFont",
+                          ),
+                        ),
+                      ],
+                    ),
+                    btnOkOnPress: () {},
+                    btnOkColor: AppColors.kMyDarkGrey,
+                    btnOkText: S.of(context).messageOkBtn,
+                  ).show();
+                },
               ),
               SideMenuBtn(
                 title: S.of(context).developerInfo,
-                onTap: () {},
+                onTap: () {
+                  AwesomeDialog(
+                    context: context,
+                    dialogBackgroundColor: AppColors.kBackGroundColor,
+                    dialogType: DialogType.warning,
+                    animType: AnimType.rightSlide,
+                    body: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Text(
+                          S.of(context).messageSupportTitle,
+                          style: const TextStyle(
+                            color: AppColors.kMyLightGrey,
+                            fontSize: 25,
+                            fontFamily: "MyFont",
+                          ),
+                        ),
+                        Image.asset(
+                          AppImages.kDeveloperInfo,
+                        ),
+                      ],
+                    ),
+                    btnOkOnPress: () {},
+                    btnOkColor: AppColors.kMyDarkGrey,
+                    btnOkText: S.of(context).messageOkBtn,
+                  ).show();
+                },
               ),
               const Spacer(
                 flex: 4,
@@ -118,7 +244,7 @@ class HomeScreen extends StatelessWidget {
               ),
               Text(
                 S.of(context).homeScreenTitle,
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 30,
                   color: AppColors.kPrimaryColor,
                   fontFamily: "Ubuntu",

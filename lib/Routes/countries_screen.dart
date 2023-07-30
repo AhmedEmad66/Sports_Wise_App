@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:shimmer/shimmer.dart';
 import 'package:sport_wise_app/Data/Cubits/Available_Countries_Cubit/available_countries_cubit.dart';
 import 'package:sport_wise_app/Data/Cubits/Country_Leagues_Cubit/country_leagues_cubit.dart';
 import 'package:sport_wise_app/Data/Repositories/each_country_leagues_repo.dart';
+import 'package:sport_wise_app/Res/app_strings.dart';
 import 'package:sport_wise_app/Routes/leagues_screen.dart';
+import '../Components/custom_back_arrow.dart';
 import '../Res/app_colors.dart';
 import '../Res/app_images.dart';
 import '../generated/l10n.dart';
@@ -48,19 +51,15 @@ class _CountriesScreenState extends State<CountriesScreen> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  IconButton(
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                    icon: const Icon(Icons.arrow_back_ios_new),
-                    color: AppColors.kMyLightGrey,
-                  ),
+                  AppStrings.kAppLanguage == "en"
+                      ? const CustomBackArrowLeft()
+                      : const CustomBackArrowRight(),
                   const Spacer(
                     flex: 1,
                   ),
-                   Text(
+                  Text(
                     S.of(context).countryScreenTitle,
-                    style: TextStyle(
+                    style:  TextStyle(
                       fontSize: 30,
                       fontFamily: "Ubuntu",
                       fontWeight: FontWeight.w600,
@@ -80,9 +79,36 @@ class _CountriesScreenState extends State<CountriesScreen> {
                     AvailableCountriesState>(
                   builder: (context, state) {
                     if (state is AvailableCountriesLoading) {
-                      return const Center(
-                        child: CircularProgressIndicator(),
-                      );
+                      return Shimmer.fromColors(
+                          baseColor: const Color.fromARGB(255, 247, 247, 247).withOpacity(0.4),
+                          highlightColor: const Color.fromARGB(255, 255, 255, 255)
+                              .withOpacity(0.1),
+                          child: GridView.custom(
+                            physics: const BouncingScrollPhysics(),
+                            gridDelegate: SliverWovenGridDelegate.count(
+                              crossAxisCount: 3,
+                              mainAxisSpacing: 8,
+                              crossAxisSpacing: 8,
+                              pattern: [
+                                const WovenGridTile(1),
+                                const WovenGridTile(
+                                  1.5,
+                                  crossAxisRatio: 1.0,
+                                  alignment: AlignmentDirectional.centerEnd,
+                                ),
+                              ],
+                            ),
+                            childrenDelegate: SliverChildBuilderDelegate(
+                              childCount: 30,
+                              (context, index) => Container(
+                                padding: const EdgeInsets.all(8),
+                                decoration: BoxDecoration(
+                                  color: AppColors.kMyLightGrey,
+                                  borderRadius: BorderRadius.circular(15),
+                                ),
+                              ),
+                            ),
+                          ));
                     } else if (state is AvailableCountriesSuccess) {
                       var ourCountries = state.countriesResponse.result!;
                       return GridView.custom(

@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "94489922710",
+    "project_id": "sports-wise",
+    "storage_bucket": "sports-wise.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:94489922710:android:708a14d76d48cc1409c6b7",
+        "android_client_info": {
+          "package_name": "com.example.sport_wise_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "94489922710-qkv76p7ukvk0l6b0oidb2rqp8cr4uvn3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDGP1orI08nLcIaibXnxerUNchoXN98T9A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "94489922710-qkv76p7ukvk0l6b0oidb2rqp8cr4uvn3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

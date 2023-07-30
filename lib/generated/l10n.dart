@@ -220,6 +220,46 @@ class S {
     );
   }
 
+  /// `Contact us`
+  String get messageSupportTitle {
+    return Intl.message(
+      'Contact us',
+      name: 'messageSupportTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `+201282614885`
+  String get messageSupportDes1 {
+    return Intl.message(
+      '+201282614885',
+      name: 'messageSupportDes1',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `+201284897213`
+  String get messageSupportDes2 {
+    return Intl.message(
+      '+201284897213',
+      name: 'messageSupportDes2',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `+201227230520`
+  String get messageSupportDes3 {
+    return Intl.message(
+      '+201227230520',
+      name: 'messageSupportDes3',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Side Menu`
   String get sideMenuTitle {
     return Intl.message(

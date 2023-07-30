@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
+import 'package:shimmer/shimmer.dart';
 import 'package:sport_wise_app/Data/Cubits/League_Teams_Cubit/league_teams_cubit.dart';
 import 'package:sport_wise_app/Data/Cubits/Team_Players_Cubit/team_players_cubit.dart';
 import 'package:sport_wise_app/Data/Cubits/Top_Scorers_Cubit/top_scorers_cubit.dart';
@@ -8,9 +9,11 @@ import 'package:sport_wise_app/Data/Repositories/league_teams_repo.dart';
 import 'package:sport_wise_app/Data/Repositories/team_players_repo.dart';
 import 'package:sport_wise_app/Routes/players_screen.dart';
 
+import '../Components/custom_back_arrow.dart';
 import '../Components/search_bar.dart';
 import '../Res/app_colors.dart';
 import '../Res/app_images.dart';
+import '../Res/app_strings.dart';
 import '../generated/l10n.dart';
 
 class TeamsAndTopScorers extends StatelessWidget {
@@ -43,29 +46,25 @@ class TeamsAndTopScorers extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    IconButton(
-                      onPressed: () {
-                        Navigator.pop(context);
-                      },
-                      icon: const Icon(Icons.arrow_back_ios_new),
-                      color: AppColors.kMyLightGrey,
-                    ),
+                    AppStrings.kAppLanguage == "en"
+                        ? const CustomBackArrowLeft()
+                        : const CustomBackArrowRight(),
                   ],
                 ),
-                 TabBar(
+                TabBar(
                     dividerColor: Colors.transparent,
-                    physics: BouncingScrollPhysics(),
-                    labelPadding: EdgeInsets.only(
+                    physics: const BouncingScrollPhysics(),
+                    labelPadding: const EdgeInsets.only(
                       right: 15,
                     ),
                     labelColor: AppColors.kPrimaryColor,
                     unselectedLabelColor: AppColors.kMyWhite,
-                    labelStyle: TextStyle(
+                    labelStyle: const TextStyle(
                       fontFamily: "Ubuntu",
                       fontSize: 30,
                       fontWeight: FontWeight.w700,
                     ),
-                    unselectedLabelStyle: TextStyle(
+                    unselectedLabelStyle: const TextStyle(
                       backgroundColor: Color.fromARGB(125, 0, 0, 0),
                       fontFamily: "Ubuntu",
                       fontSize: 25,
@@ -86,8 +85,48 @@ class TeamsAndTopScorers extends StatelessWidget {
                       BlocBuilder<LeagueTeamsCubit, LeagueTeamsState>(
                         builder: (context, state) {
                           if (state is LeagueTeamsLoading) {
-                            return const Center(
-                              child: CircularProgressIndicator(),
+                            return Shimmer.fromColors(
+                              baseColor:
+                                  const Color.fromARGB(255, 247, 247, 247)
+                                      .withOpacity(0.4),
+                              highlightColor:
+                                  const Color.fromARGB(255, 255, 255, 255)
+                                      .withOpacity(0.1),
+                              child: Expanded(
+                                child: AnimationLimiter(
+                                  child: GridView.count(
+                                    physics: const BouncingScrollPhysics(),
+                                    crossAxisCount: 2,
+                                    children: List.generate(
+                                      10,
+                                      (int index) {
+                                        return AnimationConfiguration
+                                            .staggeredGrid(
+                                          position: index,
+                                          duration:
+                                              const Duration(milliseconds: 375),
+                                          columnCount: 4,
+                                          child: ScaleAnimation(
+                                            child: FadeInAnimation(
+                                              child: Container(
+                                                margin:
+                                                    const EdgeInsets.symmetric(
+                                                        horizontal: 10,
+                                                        vertical: 10),
+                                                decoration: BoxDecoration(
+                                                  color: AppColors.kMyLightGrey,
+                                                  borderRadius:
+                                                      BorderRadius.circular(15),
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        );
+                                      },
+                                    ),
+                                  ),
+                                ),
+                              ),
                             );
                           } else if (state is LeagueTeamsSuccess) {
                             var ourTeams = state.leagueTeams.result!;
@@ -240,9 +279,52 @@ class TeamsAndTopScorers extends StatelessWidget {
                       BlocBuilder<TopScorersCubit, TopScorersState>(
                         builder: (context, state) {
                           if (state is TopScorersLoading) {
-                            return const Center(
-                              child: CircularProgressIndicator(),
-                            );
+                            return Shimmer.fromColors(
+                                baseColor:
+                                    const Color.fromARGB(255, 247, 247, 247)
+                                        .withOpacity(0.4),
+                                highlightColor:
+                                    const Color.fromARGB(255, 255, 255, 255)
+                                        .withOpacity(0.1),
+                                child: SingleChildScrollView(
+                                  physics: const BouncingScrollPhysics(),
+                                  child: AnimationLimiter(
+                                    child: Column(
+                                      children: AnimationConfiguration
+                                          .toStaggeredList(
+                                        duration:
+                                            const Duration(milliseconds: 500),
+                                        childAnimationBuilder: (widget) =>
+                                            SlideAnimation(
+                                          verticalOffset: 50.0,
+                                          child: FadeInAnimation(
+                                            child: widget,
+                                          ),
+                                        ),
+                                        children: [
+                                          for (int i = 0; i < 10; i++)
+                                            Container(
+                                              margin:
+                                                  const EdgeInsets.symmetric(
+                                                      horizontal: 10,
+                                                      vertical: 10),
+                                              padding:
+                                                  const EdgeInsets.symmetric(
+                                                      horizontal: 20,
+                                                      vertical: 10),
+                                              width: double.infinity,
+                                              height: 80,
+                                              decoration: BoxDecoration(
+                                                color: AppColors.kMyLightGrey,
+                                                borderRadius:
+                                                    BorderRadius.circular(15),
+                                              ),
+                                            ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                ));
                           } else if (state is TopScorersSuccess) {
                             var ourTopScorers = state.leagueTopScorers.result!;
                             return SingleChildScrollView(

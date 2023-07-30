@@ -36,6 +36,14 @@ class MessageLookup extends MessageLookupByLibrary {
         "leaguesScreenTitle":
             MessageLookupByLibrary.simpleMessage("All Tournaments"),
         "messageOkBtn": MessageLookupByLibrary.simpleMessage("Ok"),
+        "messageSupportDes1":
+            MessageLookupByLibrary.simpleMessage("+201282614885"),
+        "messageSupportDes2":
+            MessageLookupByLibrary.simpleMessage("+201284897213"),
+        "messageSupportDes3":
+            MessageLookupByLibrary.simpleMessage("+201227230520"),
+        "messageSupportTitle":
+            MessageLookupByLibrary.simpleMessage("Contact us"),
         "onboardingDescription1": MessageLookupByLibrary.simpleMessage(
             "With our app, the stadium comes to you! Catch live games"),
         "onboardingDescription2": MessageLookupByLibrary.simpleMessage(

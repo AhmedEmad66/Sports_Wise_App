@@ -10,7 +10,7 @@ import '../Res/app_images.dart';
 import '../Res/app_strings.dart';
 
 class SplashScreen extends StatefulWidget {
-  const SplashScreen({Key? key});
+  const SplashScreen({super.key,});
 
   // Named Route
   static String id = 'SplashScreen';
@@ -116,7 +116,7 @@ class _SplashScreenState extends State<SplashScreen> {
               height: 10,
             ),
             // Slogan
-            const Text(
+             Text(
               AppStrings.kAppSlogan,
               style: TextStyle(
                 fontFamily: "Ubuntu",

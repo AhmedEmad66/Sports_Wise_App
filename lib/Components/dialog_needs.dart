@@ -24,7 +24,7 @@ class CustomText extends StatelessWidget {
           children: <TextSpan>[
             TextSpan(
               text: answer,
-              style: const TextStyle(
+              style:  TextStyle(
                 color: AppColors.kPrimaryColor,
                 fontSize: 25,
                 fontFamily: "Ubuntu",

@@ -2,13 +2,15 @@ import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
+import 'package:shimmer/shimmer.dart';
 import 'package:sport_wise_app/Data/Cubits/Team_Players_Cubit/team_players_cubit.dart';
 import 'package:sport_wise_app/Data/Repositories/team_players_repo.dart';
+import '../Components/custom_back_arrow.dart';
 import '../Components/dialog_needs.dart';
 import '../Components/search_bar.dart';
-import '../Data/Cubits/League_Teams_Cubit/league_teams_cubit.dart';
 import '../Res/app_colors.dart';
 import '../Res/app_images.dart';
+import '../Res/app_strings.dart';
 import '../generated/l10n.dart';
 
 class PlayerScreen extends StatelessWidget {
@@ -40,15 +42,10 @@ class PlayerScreen extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  IconButton(
-                    onPressed: () {
-                      Navigator.pop(context);
-                      context.read<LeagueTeamsCubit>().getTeams();
-                    },
-                    icon: const Icon(Icons.arrow_back_ios_new),
-                    color: AppColors.kMyLightGrey,
-                  ),
-                  Spacer(
+                  AppStrings.kAppLanguage == "en"
+                      ? const CustomBackArrowLeft()
+                      : const CustomBackArrowRight(),
+                  const Spacer(
                     flex: 1,
                   ),
                   Text(
@@ -60,7 +57,7 @@ class PlayerScreen extends StatelessWidget {
                       color: AppColors.kPrimaryColor,
                     ),
                   ),
-                  Spacer(
+                  const Spacer(
                     flex: 2,
                   ),
                 ],
@@ -83,7 +80,7 @@ class PlayerScreen extends StatelessWidget {
               const SizedBox(
                 height: 10,
               ),
-              const Divider(
+               Divider(
                 color: AppColors.kPrimaryColor,
                 thickness: 2,
               ),
@@ -94,8 +91,44 @@ class PlayerScreen extends StatelessWidget {
                 child: BlocBuilder<TeamPlayersCubit, TeamPlayersState>(
                   builder: (context, state) {
                     if (state is TeamPlayersLoading) {
-                      return const Center(
-                        child: CircularProgressIndicator(),
+                      return Shimmer.fromColors(
+                        baseColor: const Color.fromARGB(255, 247, 247, 247)
+                            .withOpacity(0.4),
+                        highlightColor: const Color.fromARGB(255, 255, 255, 255)
+                            .withOpacity(0.1),
+                        child: SingleChildScrollView(
+                          physics: const BouncingScrollPhysics(),
+                          child: AnimationLimiter(
+                            child: Column(
+                              children: AnimationConfiguration.toStaggeredList(
+                                duration: const Duration(milliseconds: 500),
+                                childAnimationBuilder: (widget) =>
+                                    SlideAnimation(
+                                  verticalOffset: 50.0,
+                                  child: FadeInAnimation(
+                                    child: widget,
+                                  ),
+                                ),
+                                children: [
+                                  for (int index = 0; index < 10; index++)
+                                    Container(
+                                      margin: const EdgeInsets.symmetric(
+                                          vertical: 10),
+                                      padding: const EdgeInsets.symmetric(
+                                        horizontal: 10,
+                                      ),
+                                      width: double.infinity,
+                                      height: 90,
+                                      decoration: BoxDecoration(
+                                        color: AppColors.kMyLightGrey,
+                                        borderRadius: BorderRadius.circular(15),
+                                      ),
+                                    ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
                       );
                     } else if (state is TeamPlayersSuccess) {
                       var ourPlayers = state.teamPlayers.result!;

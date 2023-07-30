@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
+import 'package:shimmer/shimmer.dart';
 import 'package:sport_wise_app/Data/Cubits/Country_Leagues_Cubit/country_leagues_cubit.dart';
 import 'package:sport_wise_app/Data/Cubits/League_Teams_Cubit/league_teams_cubit.dart';
 import 'package:sport_wise_app/Data/Cubits/Top_Scorers_Cubit/top_scorers_cubit.dart';
 import 'package:sport_wise_app/Data/Repositories/league_teams_repo.dart';
 import 'package:sport_wise_app/Routes/teams_and_top_scorers.dart';
+import '../Components/custom_back_arrow.dart';
 import '../Res/app_colors.dart';
 import '../Res/app_images.dart';
+import '../Res/app_strings.dart';
 import '../generated/l10n.dart';
 
 class LeaguesScreen extends StatelessWidget {
@@ -40,19 +43,15 @@ class LeaguesScreen extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  IconButton(
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                    icon: const Icon(Icons.arrow_back_ios_new),
-                    color: AppColors.kMyLightGrey,
-                  ),
+                  AppStrings.kAppLanguage == "en"
+                      ? const CustomBackArrowLeft()
+                      : const CustomBackArrowRight(),
                   const Spacer(
                     flex: 1,
                   ),
-                   Text(
+                  Text(
                     S.of(context).leaguesScreenTitle,
-                    style: TextStyle(
+                    style:  TextStyle(
                       fontSize: 30,
                       fontFamily: "Ubuntu",
                       fontWeight: FontWeight.w600,
@@ -71,9 +70,45 @@ class LeaguesScreen extends StatelessWidget {
                 child: BlocBuilder<CountryLeaguesCubit, CountryLeaguesState>(
                   builder: (context, state) {
                     if (state is CountryLeaguesLoading) {
-                      return const Center(
-                        child: CircularProgressIndicator(),
-                      );
+                      return Shimmer.fromColors(
+                          baseColor: const Color.fromARGB(255, 247, 247, 247)
+                              .withOpacity(0.4),
+                          highlightColor:
+                              const Color.fromARGB(255, 255, 255, 255)
+                                  .withOpacity(0.1),
+                          child: SingleChildScrollView(
+                            child: AnimationLimiter(
+                              child: Column(
+                                children:
+                                    AnimationConfiguration.toStaggeredList(
+                                  duration: const Duration(milliseconds: 500),
+                                  childAnimationBuilder: (widget) =>
+                                      SlideAnimation(
+                                    verticalOffset: 50.0,
+                                    child: FadeInAnimation(
+                                      child: widget,
+                                    ),
+                                  ),
+                                  children: [
+                                    for (int i = 0; i < 10; i++)
+                                      Container(
+                                        margin: const EdgeInsets.symmetric(
+                                            vertical: 10),
+                                        padding: const EdgeInsets.symmetric(
+                                            horizontal: 10),
+                                        width: double.infinity,
+                                        height: 100,
+                                        decoration: BoxDecoration(
+                                          color: AppColors.kMyLightGrey,
+                                          borderRadius:
+                                              BorderRadius.circular(20),
+                                        ),
+                                      ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ));
                     } else if (state is CountryLeaguesSuccess) {
                       var ourLeagues = state.countryLeagues.result!;
                       return SingleChildScrollView(

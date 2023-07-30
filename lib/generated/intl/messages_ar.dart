@@ -28,33 +28,39 @@ class MessageLookup extends MessageLookupByLibrary {
         "developerInfo": MessageLookupByLibrary.simpleMessage("معلومات المطور"),
         "footballCategory": MessageLookupByLibrary.simpleMessage("كرة القدم"),
         "homeScreenTitle": MessageLookupByLibrary.simpleMessage(
-            " :يوجد العديد من الرياضات الممتعه لتختارها"),
+            "يوجد العديد من الرياضات لتختارها :"),
         "languages": MessageLookupByLibrary.simpleMessage("اللغات"),
         "leaguesScreenTitle": MessageLookupByLibrary.simpleMessage("البطولات"),
         "messageOkBtn": MessageLookupByLibrary.simpleMessage("تم"),
+        "messageSupportDes1":
+            MessageLookupByLibrary.simpleMessage("٢٠١٢٨٢٦١٤٨٨٥+"),
+        "messageSupportDes2":
+            MessageLookupByLibrary.simpleMessage("٢٠١٢٨٤٨٩٧٢١٣+"),
+        "messageSupportDes3":
+            MessageLookupByLibrary.simpleMessage("٢٠١٢٢٧٢٣٠٥٢٠+"),
+        "messageSupportTitle": MessageLookupByLibrary.simpleMessage("راسلنا"),
         "onboardingDescription1":
             MessageLookupByLibrary.simpleMessage("معنا! ياتي الملعب اليك"),
         "onboardingDescription2": MessageLookupByLibrary.simpleMessage(
             "استمتع بكل المباريات بدون تفويت اي لحظه"),
         "onboardingDescription3": MessageLookupByLibrary.simpleMessage(
             "نزودك بتغطيه جيده مع تحليل عميق للخبر"),
-        "onboardingNumber1": MessageLookupByLibrary.simpleMessage("١ من ٢"),
+        "onboardingNumber1": MessageLookupByLibrary.simpleMessage("١ من ٣"),
         "onboardingNumber2": MessageLookupByLibrary.simpleMessage("٢ من ٣"),
         "onboardingNumber3": MessageLookupByLibrary.simpleMessage("٣ من ٣"),
         "onboardingTitle1": MessageLookupByLibrary.simpleMessage(
             "اعرف الخبر من اي مكان وفي اي وقت"),
         "onboardingTitle2":
             MessageLookupByLibrary.simpleMessage("نتائج حقيقيه وفوريه"),
-        "onboardingTitle3": MessageLookupByLibrary.simpleMessage("لنبدأ!"),
+        "onboardingTitle3": MessageLookupByLibrary.simpleMessage("لنبدأ !"),
         "searchBarHintText": MessageLookupByLibrary.simpleMessage("ابحث..."),
-        "sideMenuTitle":
-            MessageLookupByLibrary.simpleMessage("القائمه الجانبيه"),
-        "skipBtn": MessageLookupByLibrary.simpleMessage("تحطي"),
+        "sideMenuTitle": MessageLookupByLibrary.simpleMessage("القائمة :"),
+        "skipBtn": MessageLookupByLibrary.simpleMessage("تخطي"),
         "support": MessageLookupByLibrary.simpleMessage("الدعم"),
         "teamsTitle": MessageLookupByLibrary.simpleMessage("الفرق"),
         "tennisCategory": MessageLookupByLibrary.simpleMessage("تنس"),
         "themeModeDark": MessageLookupByLibrary.simpleMessage("الوضع الليلي"),
-        "themeModeLight": MessageLookupByLibrary.simpleMessage("الوضع الفاتح"),
+        "themeModeLight": MessageLookupByLibrary.simpleMessage("الوضع المضيئ"),
         "topScorersTitle": MessageLookupByLibrary.simpleMessage("الهدافين"),
         "vollyballCategory": MessageLookupByLibrary.simpleMessage("كرة الطائرة")
       };

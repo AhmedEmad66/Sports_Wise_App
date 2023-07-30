@@ -29,10 +29,10 @@ class OnboardContent extends StatelessWidget {
         ),
         // for PageNumbers
         Container(
-          margin: const EdgeInsets.fromLTRB(24, 0, 0, 0),
-          width: 53,
-          height: 13,
-          decoration: const BoxDecoration(
+          margin: const EdgeInsets.fromLTRB(24, 0, 24, 0),
+          width: 73,
+          // height: 15,
+          decoration:  BoxDecoration(
               color: AppColors.kPrimaryColor,
               borderRadius: BorderRadius.all(Radius.circular(27.5))),
           child: Center(
@@ -40,13 +40,13 @@ class OnboardContent extends StatelessWidget {
             number,
             style: const TextStyle(
               fontFamily: "Ubuntu",
-              fontSize: 10,
+              fontSize: 15,
               fontWeight: FontWeight.w700,
             ),
           )),
         ),
         Padding(
-          padding: const EdgeInsets.fromLTRB(24, 12, 0, 0),
+          padding: const EdgeInsets.fromLTRB(24, 12, 24, 0),
           //for Titles
           child: SizedBox(
             width: 342,
@@ -58,12 +58,12 @@ class OnboardContent extends StatelessWidget {
                 fontWeight: FontWeight.w600,
                 color: AppColors.kMyWhite,
               ),
-              textAlign: TextAlign.left,
+              textAlign: TextAlign.start,
             ),
           ),
         ),
         Padding(
-          padding: const EdgeInsets.fromLTRB(24, 12, 0, 0),
+          padding: const EdgeInsets.fromLTRB(24, 12, 24, 0),
           //for Descriptions
           child: SizedBox(
             width: 300,
@@ -75,6 +75,7 @@ class OnboardContent extends StatelessWidget {
                 color: AppColors.kMyLightGrey,
                 fontWeight: FontWeight.w400,
               ),
+              textAlign: TextAlign.start,
             ),
           ),
         ),

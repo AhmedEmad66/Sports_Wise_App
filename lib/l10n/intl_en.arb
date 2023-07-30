@@ -19,6 +19,10 @@
     
     "comingSoonMessage" : "Coming Soon^_^",
     "messageOkBtn" : "Ok",
+    "messageSupportTitle" : "Contact us",
+    "messageSupportDes1" : "+201282614885",
+    "messageSupportDes2" : "+201284897213",
+    "messageSupportDes3" : "+201227230520",
     
     "sideMenuTitle" : "Side Menu",
     "themeModeLight" : "Light Mode",

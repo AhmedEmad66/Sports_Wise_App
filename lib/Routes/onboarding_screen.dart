@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:sport_wise_app/Components/main_button.dart';
+import 'package:sport_wise_app/Res/app_strings.dart';
 import 'package:sport_wise_app/Routes/home_screen.dart';
 
 import '../Components/change_language.dart';
@@ -9,6 +10,7 @@ import '../Components/do_indicator.dart';
 import '../Components/onboard_needs.dart';
 import '../Data/Models/onboarding_model.dart';
 import '../Res/app_colors.dart';
+import '../generated/l10n.dart';
 
 class OnboardingScreen extends StatefulWidget {
   const OnboardingScreen({super.key});
@@ -61,11 +63,13 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
       // To Avoid The System Bars
       body: SafeArea(
         child: SizedBox(
-        height: double.infinity,
-        width: double.infinity,
+          height: double.infinity,
+          width: double.infinity,
           child: Column(
             children: [
-              const ArabicLanguage(),
+              AppStrings.kAppLanguage == "ar"
+                  ? const EnglishLanguage()
+                  : const ArabicLanguage(),
               Expanded(
                 // scrolling PageView for content
                 child: PageView.builder(
@@ -114,7 +118,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                       padding: const EdgeInsets.fromLTRB(0, 0, 0, 45),
                       // Skip Button
                       child: MainButton(
-                          text: "Skip",
+                          text: S.of(context).skipBtn,
                           width: MediaQuery.of(context).size.width / 2,
                           height: 50,
                           onPressed: () {
@@ -124,7 +128,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                                     builder: (context) => const HomeScreen()));
                           },
                           borderThickness: 1,
-                          borderColor: const [
+                          borderColor:  [
                             AppColors.kMyLightGrey,
                             AppColors.kPrimaryColor,
                           ],

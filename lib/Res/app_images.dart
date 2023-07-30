@@ -7,6 +7,7 @@ class AppImages {
   static const String kMainBG = "${kBaseImagesURL}mainBG.png";
   static const String kArabicFlag = "${kBaseImagesURL}ArabicFlag.png";
   static const String kEnglishFlag = "${kBaseImagesURL}EnglishFlag.png";
+  static const String kDeveloperInfo = "${kBaseImagesURL}DeveloperInfo.jpg";
   static const String kOnboard1 = "${kOnboardingURL}onboard1.png";
   static const String kOnboard2 = "${kOnboardingURL}onboard2.png";
   static const String kOnboard3 = "${kOnboardingURL}onboard3.png";

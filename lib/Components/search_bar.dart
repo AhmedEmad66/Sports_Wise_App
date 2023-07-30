@@ -46,7 +46,7 @@ class SearchBar extends StatelessWidget {
           ),
           suffix: InkWell(
             onTap: onPressed,
-            child: const Icon(
+            child:  Icon(
               Icons.search_rounded,
               color: AppColors.kPrimaryColor,
             ),
@@ -54,7 +54,7 @@ class SearchBar extends StatelessWidget {
           border: InputBorder.none,
           enabledBorder: InputBorder.none,
           focusedBorder: OutlineInputBorder(
-            borderSide: const BorderSide(color: AppColors.kPrimaryColor),
+            borderSide:  BorderSide(color: AppColors.kPrimaryColor),
             borderRadius: BorderRadius.circular(14),
           ),
           contentPadding: const EdgeInsets.only(

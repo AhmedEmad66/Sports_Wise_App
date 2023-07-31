@@ -6,11 +6,13 @@ import 'package:sport_wise_app/Data/Cubits/Country_Leagues_Cubit/country_leagues
 import 'package:sport_wise_app/Data/Cubits/League_Teams_Cubit/league_teams_cubit.dart';
 import 'package:sport_wise_app/Data/Cubits/Top_Scorers_Cubit/top_scorers_cubit.dart';
 import 'package:sport_wise_app/Data/Repositories/league_teams_repo.dart';
-import 'package:sport_wise_app/Routes/teams_and_top_scorers.dart';
+import 'package:sport_wise_app/Routes/Teams_and_TopScorers/teams_and_top_scorers.dart';
 import '../Components/custom_back_arrow.dart';
+import '../Components/faild_requist_message.dart';
 import '../Res/app_colors.dart';
 import '../Res/app_images.dart';
 import '../Res/app_strings.dart';
+import '../Res/app_styles.dart';
 import '../generated/l10n.dart';
 
 class LeaguesScreen extends StatelessWidget {
@@ -51,12 +53,7 @@ class LeaguesScreen extends StatelessWidget {
                   ),
                   Text(
                     S.of(context).leaguesScreenTitle,
-                    style:  const TextStyle(
-                      fontSize: 30,
-                      fontFamily: "Ubuntu",
-                      fontWeight: FontWeight.w600,
-                      color: AppColors.kPrimaryColor,
-                    ),
+                    style: AppStyles.kScreenMainTitle,
                   ),
                   const Spacer(
                     flex: 2,
@@ -196,14 +193,7 @@ class LeaguesScreen extends StatelessWidget {
                       );
                     } else {
                       return const Center(
-                        child: Text(
-                          "Requst is Faild",
-                          style: TextStyle(
-                            color: AppColors.kMyWhite,
-                            fontFamily: "Ubuntu",
-                            fontSize: 25,
-                          ),
-                        ),
+                        child: FaildRequstTextMessage(),
                       );
                     }
                   },

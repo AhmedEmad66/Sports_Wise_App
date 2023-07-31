@@ -1,3 +1,4 @@
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import '../Data/Models/team_players_model/result.dart';
 import '../Res/app_colors.dart';
@@ -25,7 +26,7 @@ class CustomText extends StatelessWidget {
           children: <TextSpan>[
             TextSpan(
               text: answer,
-              style:  const TextStyle(
+              style: const TextStyle(
                 color: AppColors.kPrimaryColor,
                 fontSize: 25,
                 fontFamily: "Ubuntu",
@@ -124,3 +125,5 @@ class PlayerDialogInfo extends StatelessWidget {
     ]);
   }
 }
+
+

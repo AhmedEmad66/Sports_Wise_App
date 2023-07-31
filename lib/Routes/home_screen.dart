@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:sport_wise_app/Data/Cubits/Change_Language_Cubit/change_language_cubit.dart';
 import 'package:sport_wise_app/Res/app_colors.dart';
 import 'package:sport_wise_app/Res/app_images.dart';
-import 'package:sport_wise_app/Res/app_strings.dart';
 import 'package:sport_wise_app/Routes/countries_screen.dart';
 import 'package:awesome_dialog/awesome_dialog.dart';
-import '../Components/side_menu_btn.dart';
+import '../Components/custom_drawer.dart';
+import '../Components/home_categoey_container.dart';
 import '../Data/Models/home_categories_model.dart';
-import '../Data/Models/language_model.dart';
+import '../Res/app_styles.dart';
 import '../generated/l10n.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -24,226 +22,25 @@ class HomeScreen extends StatelessWidget {
       resizeToAvoidBottomInset: false,
       backgroundColor: AppColors.kBackGroundColor,
       extendBodyBehindAppBar: true,
+      // AppBar
       appBar: AppBar(
         backgroundColor: AppColors.kMyTransparent,
         shadowColor: AppColors.kMyTransparent,
       ),
-      drawer: Drawer(
-        backgroundColor: AppColors.kMyDarkGrey,
-        width: MediaQuery.of(context).size.width * 2 / 2.7,
-        child: Padding(
-          padding: const EdgeInsets.symmetric(
-            horizontal: 20,
-          ),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const Spacer(
-                flex: 2,
-              ),
-              Text(
-                S.of(context).sideMenuTitle,
-                style: const TextStyle(
-                  fontFamily: "MyFont",
-                  fontSize: 35,
-                  color: AppColors.kPrimaryColor,
-                  fontWeight: FontWeight.w700,
-                ),
-              ),
-              const Spacer(
-                flex: 1,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    S.of(context).themeModeDark,
-                    style: const TextStyle(
-                      fontFamily: "Ubuntu",
-                      fontSize: 25,
-                      color: AppColors.kMyWhite,
-                      fontWeight: FontWeight.w700,
-                    ),
-                  ),
-                  Switch(
-                    value: true,
-                    onChanged: (value) {
-                      AwesomeDialog(
-                        context: context,
-                        dialogBackgroundColor: AppColors.kBackGroundColor,
-                        dialogType: DialogType.warning,
-                        animType: AnimType.rightSlide,
-                        desc: S.of(context).themeComingSoonMessage,
-                        descTextStyle: const TextStyle(
-                          color: AppColors.kMyWhite,
-                          fontSize: 25,
-                          fontFamily: "MyFont",
-                        ),
-                        btnOkOnPress: () {},
-                        btnOkColor: AppColors.kMyDarkGrey,
-                        btnOkText: S.of(context).messageOkBtn,
-                      ).show();
-                    },
-                    activeColor: AppColors.kPrimaryColor,
-                  ),
-                ],
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              BlocBuilder<ChangeLanguageCubit, ChangeLocaleState>(
-                builder: (context, state) {
-                  return DropdownButton(
-                      // disabledHint: Text(S.of(context).languages),
-                      hint: Text(
-                        S.of(context).languages,
-                        style: const TextStyle(
-                          fontFamily: "Ubuntu",
-                          fontSize: 25,
-                          color: AppColors.kMyWhite,
-                          fontWeight: FontWeight.w700,
-                        ),
-                      ),
-                      style: const TextStyle(
-                        fontFamily: "Ubuntu",
-                        fontSize: 15,
-                        color: AppColors.kBackGroundColor,
-                        fontWeight: FontWeight.w700,
-                      ),
-                      icon: const Icon(
-                        Icons.language,
-                        color: AppColors.kMyLightGrey,
-                      ),
-                      underline: const SizedBox(),
-                      items: Language.languageList()
-                          .map<DropdownMenuItem<Language>>(
-                            (lang) => DropdownMenuItem(
-                              value: lang,
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
-                                children: <Widget>[
-                                  Text(
-                                    lang.languageFlag,
-                                    style: const TextStyle(fontSize: 25),
-                                  ),
-                                  Text(lang.languageName),
-                                ],
-                              ),
-                            ),
-                          )
-                          .toList(),
-                      onChanged: (Language? language) {
-                        AppStrings.kAppLanguage = language!.languageCode;
-                        context
-                            .read<ChangeLanguageCubit>()
-                            .changeLanguege(language.languageCode);
-                        // Restart.restartApp(webOrigin: SplashScreen.id);
-                      });
-                },
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              SideMenuBtn(
-                title: S.of(context).support,
-                onTap: () {
-                  AwesomeDialog(
-                    context: context,
-                    dialogBackgroundColor: AppColors.kBackGroundColor,
-                    dialogType: DialogType.warning,
-                    animType: AnimType.rightSlide,
-                    body: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Text(
-                          S.of(context).messageSupportTitle,
-                          style: const TextStyle(
-                            color: AppColors.kMyLightGrey,
-                            fontSize: 25,
-                            fontFamily: "MyFont",
-                          ),
-                        ),
-                        Text(
-                          S.of(context).messageSupportDes1,
-                          style: const TextStyle(
-                            color: AppColors.kMyWhite,
-                            fontSize: 25,
-                            fontFamily: "MyFont",
-                          ),
-                        ),
-                        Text(
-                          S.of(context).messageSupportDes2,
-                          style: const TextStyle(
-                            color: AppColors.kMyWhite,
-                            fontSize: 25,
-                            fontFamily: "MyFont",
-                          ),
-                        ),
-                        Text(
-                          S.of(context).messageSupportDes3,
-                          style: const TextStyle(
-                            color: AppColors.kMyWhite,
-                            fontSize: 25,
-                            fontFamily: "MyFont",
-                          ),
-                        ),
-                      ],
-                    ),
-                    btnOkOnPress: () {},
-                    btnOkColor: AppColors.kMyDarkGrey,
-                    btnOkText: S.of(context).messageOkBtn,
-                  ).show();
-                },
-              ),
-              SideMenuBtn(
-                title: S.of(context).developerInfo,
-                onTap: () {
-                  AwesomeDialog(
-                    context: context,
-                    dialogBackgroundColor: AppColors.kBackGroundColor,
-                    dialogType: DialogType.warning,
-                    animType: AnimType.rightSlide,
-                    body: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Text(
-                          S.of(context).messageSupportTitle,
-                          style: const TextStyle(
-                            color: AppColors.kMyLightGrey,
-                            fontSize: 25,
-                            fontFamily: "MyFont",
-                          ),
-                        ),
-                        Image.asset(
-                          AppImages.kDeveloperInfo,
-                        ),
-                      ],
-                    ),
-                    btnOkOnPress: () {},
-                    btnOkColor: AppColors.kMyDarkGrey,
-                    btnOkText: S.of(context).messageOkBtn,
-                  ).show();
-                },
-              ),
-              const Spacer(
-                flex: 4,
-              )
-            ],
-          ),
-        ),
-      ),
+      // Home Side Menu
+      drawer: const CustomDrawer(),
       body: Container(
         padding: const EdgeInsets.symmetric(horizontal: 10),
         height: double.infinity,
         width: double.infinity,
         decoration: const BoxDecoration(
+          // Background Image
           image: DecorationImage(
             fit: BoxFit.fill,
             image: AssetImage(AppImages.kMainBG),
           ),
         ),
+        // To avoid system bar
         child: SafeArea(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
@@ -251,19 +48,16 @@ class HomeScreen extends StatelessWidget {
               const Spacer(
                 flex: 1,
               ),
+              // Home Title
               Text(
                 S.of(context).homeScreenTitle,
                 textAlign: TextAlign.center,
-                style: const TextStyle(
-                  fontSize: 30,
-                  color: AppColors.kPrimaryColor,
-                  fontFamily: "Ubuntu",
-                  fontWeight: FontWeight.w700,
-                ),
+                style: AppStyles.kScreenMainTitle,
               ),
               const Spacer(
                 flex: 2,
               ),
+              // Category Gridview
               SizedBox(
                 height: MediaQuery.of(context).size.height / 2,
                 width: double.infinity,
@@ -284,6 +78,7 @@ class HomeScreen extends StatelessWidget {
                                 MaterialPageRoute(
                                     builder: (context) =>
                                         const CountriesScreen()))
+                            // Dialog box for categories
                             : AwesomeDialog(
                                 context: context,
                                 dialogBackgroundColor:
@@ -301,30 +96,11 @@ class HomeScreen extends StatelessWidget {
                                 btnOkText: S.of(context).messageOkBtn,
                               ).show();
                       },
-                      child: Container(
-                        padding: const EdgeInsets.all(15),
-                        decoration: BoxDecoration(
-                          image: DecorationImage(
-                            image: AssetImage(
-                              categories[index].categoryImage,
-                            ),
-                          ),
-                          color: AppColors.kMyDarkGrey,
-                          borderRadius: BorderRadius.circular(15),
-                        ),
-                        width: MediaQuery.of(context).size.width / 2,
-                        height: MediaQuery.of(context).size.height / 4,
-                        child: Align(
-                          alignment: Alignment.bottomCenter,
-                          child: Text(
-                            categories[index].categoryName,
-                            style: const TextStyle(
-                              fontFamily: "MyFont",
-                              color: AppColors.kMyWhite,
-                              fontSize: 25,
-                            ),
-                          ),
-                        ),
+                      child:
+                          // Categories Container
+                          HomeScreenCategoryContainer(
+                        categories: categories,
+                        index: index,
                       ),
                     );
                   },
